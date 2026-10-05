@@ -1,0 +1,85 @@
+
+/* Färg schema */
+:root {
+    --green: #4F6354;     /* Main color Header/Footer */
+    --beige: #F5F1E8;     /* Background color */
+    --accent: #B9785D;    /* Accent color Buttons and details */
+    --sand: #D8C9B6;      /* Sections and cards */
+    --text: #2F302C;      /* Normal text */
+    --white: #FFFFFF;     /* White text on dark background */
+}
+/* SRKIV color: var(-- green/beige/etc); FÖR ATT ANVÄNDA */
+
+
+/* Generell style för hela sidan */
+body {
+    background-color: var(--beige);
+    font-family: "Lato", sans-serif;
+    /* Gör så att sidan fyller hela viewporten */
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+}
+/* Gör så att main-sektionen fyller hela utrymmet */
+main {
+    flex: 1;
+}
+
+h1, h2, h3 {
+    font-family: "Playfair Display", serif;
+}
+h1 {
+    font-size: 48px;
+    font-weight: 500;
+}
+h2 {
+    font-size: 32px;
+    font-weight: 500;
+}
+h3 {
+    font-size: 20px;
+    font-weight: 500;
+}
+
+.footer {
+background-color: var(--green);
+display:flex;
+justify-content: space-between;
+padding: 40px;
+font-size: 14px;
+}
+
+
+/* Vänster sida footer */
+.footer-info {
+display: flex;
+gap: 40px;
+
+}
+
+/* Höger sida footer */
+.footer-links {
+display: flex;
+flex-direction: column;
+}
+
+.footer h3{
+font-weight: bold;
+margin-top: 0;
+margin-bottom: 10px;
+}
+
+.footer p {
+margin: 0;
+}
+
+.footer a {
+display: block;
+margin-bottom: 8px;
+text-decoration: none;
+color: var(--white);
+}
+
+
+
+
