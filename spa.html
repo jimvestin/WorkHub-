@@ -38,235 +38,286 @@
 <body>
 
 
-<!-- Jim Header / Navbar -->
+    <!-- Jim Header / Navbar -->
 
-<header class="header">
+    <header class="header">
 
-    <a href="index.html" class="logo">
-        WorkHub Hotel
-    </a>
-
-    <nav class="navbar">
-
-        <a href="hotel.html">
-            Hotell
-        </a>
-
-        <a href="spa.html">
-            Spa
-        </a>
-
-        <a href="restaurant.html">
-            Restaurang
-        </a>
-
-        <a href="conference.html">
-            Konferens
-        </a>
-
-    </nav>
-
-</header>
-
-
-<main>
-
-
-    <!-- Jim Spa intro -->
-
-    <section class="spa-intro">
-
-        <p class="section-label">
+        <a href="index.html" class="logo">
             WorkHub Hotel
-        </p>
+        </a>
 
-        <h1>
-            Spa & Wellness
-        </h1>
+        <nav class="navbar">
 
-        <h2 class="spa-subtitle">
-            En stund för kropp och sinne
-        </h2>
+            <a href="hotel.html">
+                Hotell
+            </a>
 
-        <p class="spa-intro-text">
-            Kliv in i en värld av lugn och harmoni.
-            Låt kroppen slappna av, sinnet komma till ro
-            och njut av en stund helt för dig själv.
-        </p>
+            <a href="spa.html">
+                Spa
+            </a>
 
-    </section>
+            <a href="restaurant.html">
+                Restaurang
+            </a>
+
+            <a href="conference.html">
+                Konferens
+            </a>
+
+        </nav>
+
+    </header>
 
 
-    <!-- Jim Behandlingar -->
+    <main>
 
-    <section class="spa-section">
 
-        <div class="section-heading">
+        <!-- Jim Spa intro -->
+
+        <section class="spa-intro">
 
             <p class="section-label">
-                Behandlingar
+                WorkHub Hotel
             </p>
 
-            <h2>
-                Välj din spa-upplevelse
+            <h1>
+                Spa & Wellness
+            </h1>
+
+            <h2 class="spa-subtitle">
+                En stund för kropp och sinne
             </h2>
 
-            <p>
-                Tre behandlingar med olika karaktär för avkoppling,
-                återhämtning och välbefinnande.
-                Alla behandlingar är 60 minuter.
+            <p class="spa-intro-text">
+                Kliv in i en värld av lugn och harmoni.
+                Låt kroppen slappna av, sinnet komma till ro
+                och njut av en stund helt för dig själv.
             </p>
 
-        </div>
+        </section>
 
 
-        <!-- Jim JavaScript skapar behandlingarna här -->
+        <!-- Jim Behandlingar -->
 
-        <div
-            id="spa-offers"
-            class="spa-offers"
-        ></div>
+        <section class="spa-section">
 
-    </section>
-
-
-    <!-- Jim Bokning -->
-
-    <section class="booking-section">
-
-        <div class="booking-container">
-
-
-            <div class="booking-heading">
+            <div class="section-heading">
 
                 <p class="section-label">
-                    Bokningsförfrågan
+                    Behandlingar
                 </p>
 
                 <h2>
-                    Din bokning
+                    Välj din spa-upplevelse
                 </h2>
 
                 <p>
-                    Ange antal personer och välj sedan
-                    en behandling för varje person.
+                    Tre behandlingar med olika karaktär för avkoppling,
+                    återhämtning och välbefinnande.
+                    Alla behandlingar är 60 minuter.
                 </p>
 
             </div>
 
 
-            <!-- Jim Formulär -->
+            <!-- Jim JavaScript skapar behandlingskorten här -->
 
-            <form
-                id="booking-form"
-                novalidate
-            >
+            <div
+                id="spa-offers"
+                class="spa-offers"
+            ></div>
 
-
-                <div class="form-row">
-
-
-                    <!-- Jim Namn -->
-
-                    <div class="form-group">
-
-                        <label for="customer-name">
-                            Namn
-                        </label>
-
-                        <input
-                            type="text"
-                            id="customer-name"
-                            placeholder="Ditt namn"
-                        >
-
-                        <p class="error"></p>
-
-                    </div>
+        </section>
 
 
-                    <!-- Jim E-post -->
+        <!-- Jim Bokning -->
 
-                    <div class="form-group">
+        <section class="booking-section">
 
-                        <label for="customer-email">
-                            E-post
-                        </label>
+            <div class="booking-container">
 
-                        <input
-                            type="email"
-                            id="customer-email"
-                            placeholder="namn@email.se"
-                        >
 
-                        <p class="error"></p>
+                <!-- Jim Bokningsrubrik -->
 
-                    </div>
+                <div class="booking-heading">
+
+                    <p class="section-label">
+                        Bokningsförfrågan
+                    </p>
+
+                    <h2>
+                        Din bokning
+                    </h2>
+
+                    <p>
+                        Fyll i dina uppgifter, välj datum och tid
+                        och välj sedan en behandling för varje person.
+                    </p>
 
                 </div>
 
 
-                <!-- Jim Antal personer -->
+                <!-- Jim Formulär -->
 
-                <div class="guest-section">
+                <form
+                    id="booking-form"
+                    novalidate
+                >
 
-                    <div class="form-group guest-count-group">
 
-                        <label for="guest-count">
-                            Antal personer
-                        </label>
+                    <!-- Jim Namn och e-post -->
 
-                        <input
-                            type="number"
-                            id="guest-count"
-                            value="1"
-                            min="1"
-                            max="5"
-                        >
+                    <div class="form-row">
 
-                        <p class="error"></p>
+
+                        <div class="form-group">
+
+                            <label for="customer-name">
+                                Namn
+                            </label>
+
+                            <input
+                                type="text"
+                                id="customer-name"
+                                placeholder="Ditt namn"
+                            >
+
+                            <p class="error"></p>
+
+                        </div>
+
+
+                        <div class="form-group">
+
+                            <label for="customer-email">
+                                E-post
+                            </label>
+
+                            <input
+                                type="email"
+                                id="customer-email"
+                                placeholder="namn@email.se"
+                            >
+
+                            <p class="error"></p>
+
+                        </div>
+
 
                     </div>
 
 
-                    <div class="guest-info">
+                    <!-- Jim Datum och tid -->
 
-                        <h3>
-                            Välj behandling per person
-                        </h3>
+                    <div class="form-row">
 
-                        <p>
-                            Ni kan välja samma eller olika
-                            behandlingar för varje person.
-                        </p>
+
+                        <div class="form-group">
+
+                            <label for="booking-date">
+                                Datum
+                            </label>
+
+                            <input
+                                type="date"
+                                id="booking-date"
+                            >
+
+                            <p class="error"></p>
+
+                        </div>
+
+
+                        <div class="form-group">
+
+                            <label for="booking-time">
+                                Tid
+                            </label>
+
+                            <select id="booking-time">
+
+                                <option value="">
+                                    Välj tid
+                                </option>
+
+                                <option value="09:00">
+                                    09:00
+                                </option>
+
+                                <option value="10:00">
+                                    10:00
+                                </option>
+
+                                <option value="11:00">
+                                    11:00
+                                </option>
+
+                                <option value="12:00">
+                                    12:00
+                                </option>
+
+                                <option value="13:00">
+                                    13:00
+                                </option>
+
+                                <option value="14:00">
+                                    14:00
+                                </option>
+
+                                <option value="15:00">
+                                    15:00
+                                </option>
+
+                                <option value="16:00">
+                                    16:00
+                                </option>
+
+                                <option value="17:00">
+                                    17:00
+                                </option>
+
+                            </select>
+
+                            <p class="error"></p>
+
+                        </div>
+
 
                     </div>
 
-                </div>
+
+                    <!-- Jim Antal personer -->
+
+                    <div class="guest-section">
+
+                        <div class="form-group guest-count-group">
+
+                            <label for="guest-count">
+                                Antal personer
+                            </label>
+
+                            <input
+                                type="number"
+                                id="guest-count"
+                                value="1"
+                                min="1"
+                                max="5"
+                            >
+
+                            <p class="error"></p>
+
+                        </div>
 
 
-                <!-- Jim JavaScript skapar personernas val här -->
+                        <div class="guest-info">
 
-                <div
-                    id="guest-treatments"
-                    class="guest-treatments"
-                ></div>
-
-
-                <!-- Jim Bokningssammanfattning -->
-
-                <div class="booking-summary">
-
-                    <div>
-
-                        <p class="summary-label">
-                            Bokningssammanfattning
-                        </p>
-
-                        <div id="selected-treatments">
+                            <h3>
+                                Välj behandling per person
+                            </h3>
 
                             <p>
-                                Välj behandling för varje person.
+                                Ni kan välja samma eller olika behandlingar
+                                för varje person.
                             </p>
 
                         </div>
@@ -274,68 +325,119 @@
                     </div>
 
 
-                    <div class="total-price">
+                    <!-- Jim JavaScript skapar personernas behandlingsval här -->
 
-                        <span>
-                            Totalt
-                        </span>
+                    <div
+                        id="guest-treatments"
+                        class="guest-treatments"
+                    ></div>
 
-                        <span id="total-price">
-                            0 kr
-                        </span>
+
+                    <!-- Jim Bokningssammanfattning -->
+
+                    <div class="booking-summary">
+
+
+                        <div class="summary-details">
+
+                            <p class="summary-label">
+                                Bokningssammanfattning
+                            </p>
+
+
+                            <!-- Jim Datum och tid synkas hit -->
+
+                            <div class="summary-booking-time">
+
+                                <p id="summary-date">
+                                    Datum: Inte valt
+                                </p>
+
+                                <p id="summary-time">
+                                    Tid: Inte vald
+                                </p>
+
+                            </div>
+
+
+                            <!-- Jim Personer och behandlingar synkas hit -->
+
+                            <div id="selected-treatments">
+
+                                <p>
+                                    Välj behandling för varje person.
+                                </p>
+
+                            </div>
+
+                        </div>
+
+
+                        <!-- Jim Totalpris -->
+
+                        <div class="total-price">
+
+                            <span>
+                                Totalt
+                            </span>
+
+                            <span id="total-price">
+                                0 kr
+                            </span>
+
+                        </div>
+
 
                     </div>
 
-                </div>
+
+                    <!-- Jim Fel om behandling saknas -->
+
+                    <div class="offer-error">
+
+                        <p id="offer-error"></p>
+
+                    </div>
 
 
-                <!-- Jim Fel om behandling saknas -->
+                    <!-- Jim Skicka bokning -->
 
-                <div class="offer-error">
+                    <button
+                        type="submit"
+                        class="booking-button"
+                    >
+                        Skicka bokningsförfrågan
+                    </button>
 
-                    <p id="offer-error"></p>
 
-                </div>
+                </form>
 
 
-                <!-- Jim Skicka bokning -->
+                <!-- Jim Bokningsbekräftelse -->
+
+                <div
+                    id="confirmation"
+                    class="confirmation"
+                ></div>
+
+
+                <!-- Jim Börja om -->
 
                 <button
-                    type="submit"
-                    class="booking-button"
+                    type="button"
+                    id="reset-button"
+                    class="reset-button"
                 >
-                    Skicka bokningsförfrågan
+                    Börja om
                 </button>
 
 
-            </form>
+            </div>
+
+        </section>
 
 
-            <!-- Jim Bekräftelse -->
-
-            <div
-                id="confirmation"
-                class="confirmation"
-            ></div>
-
-
-            <!-- Jim Börja om -->
-
-            <button
-                type="button"
-                id="reset-button"
-                class="reset-button"
-            >
-                Börja om
-            </button>
-
-
-        </div>
-
-    </section>
-
-
-</main>
+    </main>
 
 
 </body>
