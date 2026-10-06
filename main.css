@@ -41,6 +41,39 @@ h3 {
     font-weight: 500;
 }
 
+.slectionhead{
+    font-size: 50px;
+    font-weight: 600;
+    color: var(--green);
+}
+.infostart{
+    font-size: 21px;
+    max-width: 770px;
+    margin: 0 auto;
+    padding: 80px 30px 90px 30px;
+    text-align: center;
+    color: var(--text);
+    
+}
+.infostart p{
+        margin-bottom: 50px;
+    }
+
+.infostart a{   
+    text-decoration: none;
+    color: var(--green);
+    font-size: 13px;    
+    letter-spacing: 1px;
+    padding: 10px 16px 9px;
+    line-height: 1;    
+    color: var(--white);    
+    background-color: var(--green);
+
+}
+.cardselections{
+    background-color: var(--white);
+}
+
 .footer {
 background-color: var(--green);
 display:flex;
