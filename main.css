@@ -49,6 +49,25 @@ h3 {
 
 }
 
+.swiper-wrapper {
+    display: flex;
+}
+
+.swiper-slide {
+    flex-shrink: 0;
+    width: 100%;
+}
+
+
+.carousel .slider-button {
+    color: #FFFFFF;
+    
+}
+
+.carousel {
+    --swiper-navigation-size: 60px;
+}
+
 .card-group {
     display: grid;
 }
