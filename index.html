@@ -9,8 +9,10 @@
      <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
      <link href="https://fonts.googleapis.com/css2?family=Lato:wght@300;400;700&family=Playfair+Display:wght@400;500;600;700&display=swap" rel="stylesheet">
      <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css">
+     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@12/swiper-bundle.min.css">
      <link rel="stylesheet" href="main.css">
-     <script src="main.js"></script>
+     <script src="https://cdn.jsdelivr.net/npm/swiper@12/swiper-bundle.min.js" defer></script>
+     <script src="main.js" defer></script>
      <title> - Hotell Workhub.</title>
 </head>
 
@@ -35,9 +37,10 @@
 
 
 <section>
- <div class="carousel">
-    <div class="slider">
-        <div class="card-list">
+ <div class="carousel swiper">
+    <div class="swiper-wrapper">
+        
+        <div class="card-list swiper-slide">
             <div class="card-group"><img src="Pic/DJI_20250903101157_0105_D___media_library_original_4096_3072.jpg" alt="" 
              class="image">
              <div class="card-info">
@@ -46,10 +49,44 @@
              </div>
             </div>
         </div>
-    </div>
-     
-  </div>
-</section>
+        <div class="card-list swiper-slide">
+            <div class="card-group"><img src="Pic/fotografiska-restaurang-5.jpg" alt="" 
+             class="image">
+             <div class="card-info">
+                <h1 class="card-text">Äta bör man annars dör man</h1>
+                <button class="button-card">Boka resturang <i class="fa-solid fa-arrow-right"></i></button>
+             </div>
+            </div>
+        </div>
+        <div class="card-list swiper-slide">
+            <div class="card-group"><img src="Pic/FZ2A9807-HDR.jpg" alt="" 
+             class="image">
+             <div class="card-info">
+                <h1 class="card-text">Konferenserna blir roligare här</h1>
+                <button class="button-card">Boka konferens <i class="fa-solid fa-arrow-right"></i></button>
+             </div>
+            </div>
+        </div>
+        <div class="card-list swiper-slide">
+            <div class="card-group"><img src="Pic/obiespa1.jpg" alt="" 
+             class="image">
+             <div class="card-info">
+                <h1 class="card-text">Spa är oerhört skönt att ta det lugnt på</h1>
+                <button class="button-card">Boka spa <i class="fa-solid fa-arrow-right"></i></button>
+             </div>
+            </div>
+        </div>
+        </div>
+    
+    <div class="swiper-pagination"></div>
+    <div class="slider-button swiper-button-prev"></div>
+    <div class="slider-button swiper-button-next"></div>
+</div>
+
+ 
+    
+
+  </section>
 
 <main>
 
