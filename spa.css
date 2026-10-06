@@ -1,0 +1,530 @@
+/* Jim Spa färger */
+
+:root {
+    --green: #4F6354;
+    --beige: #F5F1E8;
+    --accent: #B9785D;
+    --sand: #D8C9B6;
+    --text: #2F302C;
+    --white: #FFFFFF;
+}
+
+
+/* Jim Generell style */
+
+* {
+    box-sizing: border-box;
+}
+
+
+body {
+    margin: 0;
+
+    background-color: var(--beige);
+    color: var(--text);
+
+    font-family: "Lato", sans-serif;
+}
+
+
+h1,
+h2,
+h3 {
+    font-family: "Playfair Display", serif;
+}
+
+
+/* Jim Header / Navbar */
+
+.header {
+    width: 100%;
+    height: 100px;
+    padding: 0 50px;
+
+    display: flex;
+    align-items: center;
+
+    background-color: var(--green);
+}
+
+
+.logo {
+    color: var(--white);
+    text-decoration: none;
+
+    font-family: "Playfair Display", serif;
+    font-size: 35px;
+    font-weight: 500;
+}
+
+
+.navbar {
+    display: flex;
+    align-items: center;
+    gap: 35px;
+
+    margin-left: auto;
+    margin-right: 200px;
+}
+
+
+.navbar a {
+    color: var(--white);
+    text-decoration: none;
+
+    font-size: 20px;
+    font-weight: 400;
+}
+
+
+.navbar a:hover {
+    color: var(--sand);
+}
+
+
+/* Jim Spa intro */
+
+.spa-intro {
+    padding: 90px 15% 80px;
+
+    text-align: center;
+}
+
+
+.section-label {
+    margin-top: 0;
+    margin-bottom: 10px;
+
+    color: var(--accent);
+
+    font-size: 14px;
+    font-weight: 700;
+
+    text-transform: uppercase;
+    letter-spacing: 2px;
+}
+
+
+.spa-intro h1 {
+    margin: 0;
+
+    font-size: 58px;
+    font-weight: 500;
+}
+
+
+.spa-subtitle {
+    margin-top: 20px;
+    margin-bottom: 0;
+
+    color: var(--green);
+
+    font-size: 26px;
+    font-weight: 400;
+}
+
+
+.spa-intro-text {
+    max-width: 650px;
+
+    margin: 25px auto 0;
+
+    font-size: 18px;
+    line-height: 1.7;
+}
+
+
+/* Jim Behandlingar */
+
+.spa-section {
+    padding: 70px 8% 100px;
+
+    background-color: var(--white);
+}
+
+
+.section-heading {
+    max-width: 750px;
+
+    margin: 0 auto 45px;
+
+    text-align: center;
+}
+
+
+.section-heading h2 {
+    margin-top: 0;
+    margin-bottom: 15px;
+
+    font-size: 38px;
+    font-weight: 500;
+}
+
+
+.section-heading > p:last-child {
+    font-size: 16px;
+    line-height: 1.6;
+}
+
+
+/* Jim Behandlingskort */
+
+.spa-offers {
+    max-width: 1200px;
+
+    margin: 0 auto;
+
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 30px;
+}
+
+
+.spa-card {
+    padding: 40px 30px;
+
+    display: flex;
+    flex-direction: column;
+
+    background-color: var(--beige);
+
+    border: 2px solid transparent;
+}
+
+
+.spa-card:hover {
+    border-color: var(--sand);
+}
+
+
+.spa-card h3 {
+    margin-top: 0;
+    margin-bottom: 15px;
+
+    color: var(--green);
+
+    font-size: 26px;
+    font-weight: 500;
+}
+
+
+.spa-card-description {
+    min-height: 150px;
+
+    margin-top: 0;
+    margin-bottom: 20px;
+
+    font-size: 16px;
+    line-height: 1.6;
+}
+
+
+.spa-card-duration {
+    margin-top: 0;
+    margin-bottom: 10px;
+
+    color: var(--accent);
+
+    font-size: 14px;
+    font-weight: 700;
+}
+
+
+.spa-card-price {
+    margin-top: auto;
+    margin-bottom: 0;
+
+    color: var(--green);
+
+    font-size: 20px;
+    font-weight: 700;
+}
+
+
+/* Jim Bokningssektion */
+
+.booking-section {
+    padding: 100px 8%;
+
+    background-color: var(--green);
+}
+
+
+.booking-container {
+    max-width: 1050px;
+
+    margin: 0 auto;
+    padding: 60px;
+
+    background-color: var(--beige);
+}
+
+
+.booking-heading {
+    margin-bottom: 45px;
+}
+
+
+.booking-heading h2 {
+    margin-top: 0;
+    margin-bottom: 15px;
+
+    font-size: 38px;
+    font-weight: 500;
+}
+
+
+.booking-heading p:last-child {
+    font-size: 16px;
+}
+
+
+/* Jim Formulär */
+
+.form-row {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 30px;
+
+    margin-bottom: 35px;
+}
+
+
+.form-group {
+    display: flex;
+    flex-direction: column;
+}
+
+
+.form-group label {
+    margin-bottom: 8px;
+
+    font-size: 15px;
+    font-weight: 700;
+}
+
+
+.form-group input,
+.guest-treatment select {
+    width: 100%;
+
+    padding: 14px;
+
+    border: 1px solid var(--sand);
+
+    background-color: var(--white);
+    color: var(--text);
+
+    font-family: "Lato", sans-serif;
+    font-size: 16px;
+}
+
+
+.form-group input:focus,
+.guest-treatment select:focus {
+    outline: 2px solid var(--green);
+}
+
+
+/* Jim Antal personer */
+
+.guest-section {
+    margin-bottom: 35px;
+
+    display: grid;
+    grid-template-columns: 1fr 2fr;
+    gap: 30px;
+
+    align-items: end;
+}
+
+
+.guest-count-group {
+    max-width: 220px;
+}
+
+
+.guest-info h3 {
+    margin-top: 0;
+    margin-bottom: 8px;
+
+    font-size: 22px;
+}
+
+
+.guest-info p {
+    margin: 0;
+
+    font-size: 15px;
+}
+
+
+/* Jim Behandling per person */
+
+.guest-treatments {
+    margin-bottom: 35px;
+
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 20px;
+}
+
+
+.guest-treatment {
+    padding: 22px;
+
+    background-color: var(--white);
+
+    border-left: 4px solid var(--green);
+}
+
+
+.guest-treatment label {
+    display: block;
+
+    margin-bottom: 10px;
+
+    font-size: 15px;
+    font-weight: 700;
+}
+
+
+/* Jim Felmeddelanden */
+
+.error {
+    min-height: 20px;
+
+    margin-top: 7px;
+    margin-bottom: 0;
+
+    color: var(--accent);
+
+    font-size: 14px;
+}
+
+
+.offer-error {
+    min-height: 30px;
+
+    color: var(--accent);
+
+    font-size: 14px;
+}
+
+
+/* Jim Bokningssammanfattning */
+
+.booking-summary {
+    margin-bottom: 20px;
+    padding: 30px;
+
+    display: grid;
+    grid-template-columns: 2fr 1fr;
+    gap: 30px;
+
+    background-color: var(--sand);
+}
+
+
+.summary-label {
+    margin-top: 0;
+    margin-bottom: 15px;
+
+    font-size: 13px;
+    font-weight: 700;
+
+    text-transform: uppercase;
+    letter-spacing: 1px;
+}
+
+
+.treatment-summary {
+    margin: 8px 0;
+
+    font-size: 15px;
+}
+
+
+.total-price {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+
+    gap: 20px;
+
+    color: var(--green);
+
+    font-size: 21px;
+    font-weight: 700;
+}
+
+
+/* Jim Knappar */
+
+.booking-button,
+.reset-button {
+    padding: 14px 25px;
+
+    border: none;
+
+    font-family: "Lato", sans-serif;
+    font-size: 15px;
+
+    cursor: pointer;
+}
+
+
+.booking-button {
+    background-color: var(--accent);
+    color: var(--white);
+}
+
+
+.booking-button:hover {
+    background-color: var(--green);
+}
+
+
+.reset-button {
+    margin-top: 20px;
+
+    background-color: var(--sand);
+    color: var(--text);
+}
+
+
+.reset-button:hover {
+    background-color: var(--accent);
+    color: var(--white);
+}
+
+
+/* Jim Bokningsbekräftelse */
+
+.confirmation {
+    margin-top: 40px;
+}
+
+
+.confirmation-card {
+    padding: 35px;
+
+    background-color: var(--white);
+
+    border-left: 5px solid var(--green);
+}
+
+
+.confirmation-card h3 {
+    margin-top: 0;
+
+    color: var(--green);
+
+    font-size: 28px;
+}
+
+
+.confirmation-card p {
+    font-size: 16px;
+    line-height: 1.6;
+}

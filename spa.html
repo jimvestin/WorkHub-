@@ -1,0 +1,343 @@
+<!DOCTYPE html>
+<html lang="sv">
+
+<head>
+    <meta charset="UTF-8">
+
+    <meta
+        name="viewport"
+        content="width=device-width, initial-scale=1.0"
+    >
+
+    <link
+        rel="stylesheet"
+        href="https://cdnjs.cloudflare.com/ajax/libs/normalize/8.0.1/normalize.min.css"
+    >
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+
+    <link
+        rel="preconnect"
+        href="https://fonts.gstatic.com"
+        crossorigin
+    >
+
+    <link
+        href="https://fonts.googleapis.com/css2?family=Lato:wght@300;400;700&family=Playfair+Display:wght@400;500;600;700&display=swap"
+        rel="stylesheet"
+    >
+
+    <link rel="stylesheet" href="spa.css">
+
+    <script src="spa.js" defer></script>
+
+    <title>Spa - WorkHub Hotel</title>
+</head>
+
+
+<body>
+
+
+<!-- Jim Header / Navbar -->
+
+<header class="header">
+
+    <a href="index.html" class="logo">
+        WorkHub Hotel
+    </a>
+
+    <nav class="navbar">
+
+        <a href="hotel.html">
+            Hotell
+        </a>
+
+        <a href="spa.html">
+            Spa
+        </a>
+
+        <a href="restaurant.html">
+            Restaurang
+        </a>
+
+        <a href="conference.html">
+            Konferens
+        </a>
+
+    </nav>
+
+</header>
+
+
+<main>
+
+
+    <!-- Jim Spa intro -->
+
+    <section class="spa-intro">
+
+        <p class="section-label">
+            WorkHub Hotel
+        </p>
+
+        <h1>
+            Spa & Wellness
+        </h1>
+
+        <h2 class="spa-subtitle">
+            En stund för kropp och sinne
+        </h2>
+
+        <p class="spa-intro-text">
+            Kliv in i en värld av lugn och harmoni.
+            Låt kroppen slappna av, sinnet komma till ro
+            och njut av en stund helt för dig själv.
+        </p>
+
+    </section>
+
+
+    <!-- Jim Behandlingar -->
+
+    <section class="spa-section">
+
+        <div class="section-heading">
+
+            <p class="section-label">
+                Behandlingar
+            </p>
+
+            <h2>
+                Välj din spa-upplevelse
+            </h2>
+
+            <p>
+                Tre behandlingar med olika karaktär för avkoppling,
+                återhämtning och välbefinnande.
+                Alla behandlingar är 60 minuter.
+            </p>
+
+        </div>
+
+
+        <!-- Jim JavaScript skapar behandlingarna här -->
+
+        <div
+            id="spa-offers"
+            class="spa-offers"
+        ></div>
+
+    </section>
+
+
+    <!-- Jim Bokning -->
+
+    <section class="booking-section">
+
+        <div class="booking-container">
+
+
+            <div class="booking-heading">
+
+                <p class="section-label">
+                    Bokningsförfrågan
+                </p>
+
+                <h2>
+                    Din bokning
+                </h2>
+
+                <p>
+                    Ange antal personer och välj sedan
+                    en behandling för varje person.
+                </p>
+
+            </div>
+
+
+            <!-- Jim Formulär -->
+
+            <form
+                id="booking-form"
+                novalidate
+            >
+
+
+                <div class="form-row">
+
+
+                    <!-- Jim Namn -->
+
+                    <div class="form-group">
+
+                        <label for="customer-name">
+                            Namn
+                        </label>
+
+                        <input
+                            type="text"
+                            id="customer-name"
+                            placeholder="Ditt namn"
+                        >
+
+                        <p class="error"></p>
+
+                    </div>
+
+
+                    <!-- Jim E-post -->
+
+                    <div class="form-group">
+
+                        <label for="customer-email">
+                            E-post
+                        </label>
+
+                        <input
+                            type="email"
+                            id="customer-email"
+                            placeholder="namn@email.se"
+                        >
+
+                        <p class="error"></p>
+
+                    </div>
+
+                </div>
+
+
+                <!-- Jim Antal personer -->
+
+                <div class="guest-section">
+
+                    <div class="form-group guest-count-group">
+
+                        <label for="guest-count">
+                            Antal personer
+                        </label>
+
+                        <input
+                            type="number"
+                            id="guest-count"
+                            value="1"
+                            min="1"
+                            max="5"
+                        >
+
+                        <p class="error"></p>
+
+                    </div>
+
+
+                    <div class="guest-info">
+
+                        <h3>
+                            Välj behandling per person
+                        </h3>
+
+                        <p>
+                            Ni kan välja samma eller olika
+                            behandlingar för varje person.
+                        </p>
+
+                    </div>
+
+                </div>
+
+
+                <!-- Jim JavaScript skapar personernas val här -->
+
+                <div
+                    id="guest-treatments"
+                    class="guest-treatments"
+                ></div>
+
+
+                <!-- Jim Bokningssammanfattning -->
+
+                <div class="booking-summary">
+
+                    <div>
+
+                        <p class="summary-label">
+                            Bokningssammanfattning
+                        </p>
+
+                        <div id="selected-treatments">
+
+                            <p>
+                                Välj behandling för varje person.
+                            </p>
+
+                        </div>
+
+                    </div>
+
+
+                    <div class="total-price">
+
+                        <span>
+                            Totalt
+                        </span>
+
+                        <span id="total-price">
+                            0 kr
+                        </span>
+
+                    </div>
+
+                </div>
+
+
+                <!-- Jim Fel om behandling saknas -->
+
+                <div class="offer-error">
+
+                    <p id="offer-error"></p>
+
+                </div>
+
+
+                <!-- Jim Skicka bokning -->
+
+                <button
+                    type="submit"
+                    class="booking-button"
+                >
+                    Skicka bokningsförfrågan
+                </button>
+
+
+            </form>
+
+
+            <!-- Jim Bekräftelse -->
+
+            <div
+                id="confirmation"
+                class="confirmation"
+            ></div>
+
+
+            <!-- Jim Börja om -->
+
+            <button
+                type="button"
+                id="reset-button"
+                class="reset-button"
+            >
+                Börja om
+            </button>
+
+
+        </div>
+
+    </section>
+
+
+</main>
+
+
+</body>
+
+</html>
