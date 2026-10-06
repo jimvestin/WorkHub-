@@ -15,5 +15,5 @@ const swiper = new Swiper('.carousel', {
     prevEl: '.swiper-button-prev',
   },
 });
-
+/* kolla så att min swiper funkade */
 console.log(swiper);
