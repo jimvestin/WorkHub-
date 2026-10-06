@@ -4,7 +4,7 @@ const swiper = new Swiper('.carousel', {
   
   loop: true,
 
-  
+  /* delar upp bilderna till en slide */
   pagination: {
     el: '.swiper-pagination',
   },
@@ -15,5 +15,5 @@ const swiper = new Swiper('.carousel', {
     prevEl: '.swiper-button-prev',
   },
 });
-/* kolla så att min swiper funkade */
+/* för att kolla så att swipe funktionen funkade */
 console.log(swiper);
