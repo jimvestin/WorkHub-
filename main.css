@@ -141,28 +141,6 @@ h3 {
     --swiper-navigation-size: 60px;
 }
 
-.swiper-wrapper {
-    display: flex;
-}
-
-.swiper-slide {
-    flex-shrink: 0;
-    width: 100%;
-}
-
-
-.carousel .slider-button {
-    color: #FFFFFF;
-    
-}
-
-.carousel {
-    --swiper-navigation-size: 60px;
-}
-
-.card-group {
-    display: grid;
-}
 
 .card-group .image,
 .card-group .card-info {
@@ -194,7 +172,7 @@ h3 {
 .button-card {
     transform: translateY(200px);
     color: #FFFFFF;
-    background-color: #caa87b;
+    background-color: #4F6354;
     padding: 8px 20px;
     border: none;
     border-radius: 0;
