@@ -74,6 +74,8 @@ h3 {
 }
 
 .logo {
+    margin-left: 40px;
+
     color: var(--white);
     text-decoration: none;
 
@@ -105,8 +107,8 @@ h3 {
 
 .navbar a:hover {
     color: var(--sand);
-}
 
+}
 
 /* Gökhan Carousel */
 
@@ -187,7 +189,7 @@ h3 {
    color: var(--white);
    font-size: 70px;
    font-family: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
-   
+   text-shadow: 2px 2px 6px rgba(0, 0, 0, 0.8)
 }
 
 .button-card {
@@ -206,34 +208,99 @@ h3 {
 
  
 
+/* Markus Start*/
+.slectionhead{
+    font-size: 50px;
+    font-weight: 600;
+    color: var(--green);
+}
+.infostart{
+    font-size: 21px;
+    max-width: 770px;
+    margin: 0 auto;
+    padding: 80px 30px 90px 30px;
+    text-align: center;
+    color: var(--text);
 
-.card-group .image, 
-.card-group .card-info { 
-    grid-area: 1 / 1; 
-} 
+    
+}
+.infostart p{
+        margin-bottom: 50px;
+    }
 
+.infostart a{   
+    text-decoration: none;
+    color: var(--green);
+    font-size: 13px;    
+    letter-spacing: 1px;
+    padding: 10px 16px 9px;
+    line-height: 1;    
+    color: var(--white);    
+    background-color: var(--green);
+}
+/* Info End */
+/* Cards Start */
+.cardselections{
+    background-color: var(--white);
+    padding: 60px 60px;
+    
+}
+.cards{
+  display: grid;
+  grid-template-columns: repeat(2, 1fr); 
+  gap: 30px;
+  max-width: 1100px;
+  margin: 0 auto;
+  padding: 0;
+  list-style: none; 
 
-.card-info { 
-    place-self: center; 
-    text-align: center; 
-    transform: translateY(-200px); 
-    width: 100%; 
-} 
+}
+.card{
+  display: flex;
+  flex-direction: column;
+  background-color: var(--white);
+  text-decoration: none;
+  color: inherit;
+  overflow: hidden;
+  
+}
 
+.card-image img{
+    width: 100%;
+    height: 370px;
+    object-fit: cover;    
+    display:block;
+   
+}
+.card-content {
+  padding: 30px;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 15px;
+  background-color: var(--beige);
+}
 
-.image { 
-    max-inline-size: 100%; 
-    height: 700px; 
-    object-fit: cover; 
-    width: 100%; 
-} 
-
-
-.card-text { 
-    color: var(--white); 
-    font-size: 70px; 
-    font-family: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif; 
-} 
+.card-head {
+  font-family: "Playfair Display", serif;
+  font-size: 22px;
+  font-weight: 700;
+  color: var(--text);
+  margin: 0;
+  text-transform: uppercase;
+  line-height: 1.2;
+}
+.card-btn {
+  font-size: 12px;
+  font-weight: 600;
+  letter-spacing: 1px;
+  color: var(--text-light);
+  text-transform: uppercase;
+  margin-top: 8px;
+  display: inline-block;
+}
+/* Markus End */
+/* Alex Footer */
 
 .footer {
     background-color: var(--green);
