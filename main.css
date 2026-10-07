@@ -16,7 +16,7 @@ body {
     background-color: var(--beige);
     font-family: "Lato", sans-serif;
     /* Gör så att sidan fyller hela viewporten */
-    margin: 0;
+    min-height: 100vh;
     display: flex;
     flex-direction: column;
 }
@@ -41,6 +41,7 @@ h3 {
     font-weight: 500;
 }
 
+/* Markus Start*/
 .slectionhead{
     font-size: 50px;
     font-weight: 600;
@@ -69,8 +70,9 @@ h3 {
     line-height: 1;    
     color: var(--white);    
     background-color: var(--green);
-
 }
+/* Info End */
+/* Cards Start */
 .cardselections{
     background-color: var(--white);
     padding: 60px 60px;
@@ -130,6 +132,7 @@ h3 {
   margin-top: 8px;
   display: inline-block;
 }
+/* Markus End */
 
 .footer {
 background-color: var(--green);
