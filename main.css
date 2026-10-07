@@ -170,6 +170,7 @@ h3 {
 }
 
 .button-card {
+    display: inline-block;
     transform: translateY(200px);
     color: #FFFFFF;
     background-color: #4F6354;
@@ -177,6 +178,7 @@ h3 {
     border: none;
     border-radius: 0;
     box-shadow: none;
+    text-decoration: none !important;
 }
 
 .button-card i {
