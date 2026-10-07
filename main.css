@@ -1,4 +1,4 @@
-/* Färg schema */ 
+/* Färgschema */ 
 
 :root { 
     --green: #4F6354;     /* Main color Header/Footer */ 
@@ -124,7 +124,7 @@ h3 {
 
 
 .carousel .slider-button {
-    color: #FFFFFF;
+    color: var(--white);
     
 }
 
@@ -143,7 +143,7 @@ h3 {
 
 
 .carousel .slider-button {
-    color: #FFFFFF;
+    color: var(--white);
     
 }
 
@@ -176,7 +176,7 @@ h3 {
 }
 
 .card-text {
-   color: #FFFFFF;
+   color: var(--white);
    font-size: 70px;
    font-family: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
    
@@ -184,8 +184,8 @@ h3 {
 
 .button-card {
     transform: translateY(200px);
-    color: #FFFFFF;
-    background-color: #caa87b;
+    color: var(--white);
+    background-color: var(--accent);
     padding: 8px 20px;
     border: none;
     border-radius: 0;
@@ -221,7 +221,7 @@ h3 {
 
 
 .card-text { 
-    color: #FFFFFF; 
+    color: var(--white); 
     font-size: 70px; 
     font-family: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif; 
 } 
@@ -229,8 +229,8 @@ h3 {
 
 .button-card { 
     transform: translateY(200px); 
-    color: #FFFFFF; 
-    background-color: #caa87b; 
+    color: var(--white); 
+    background-color: var(--accent); 
     padding: 8px 20px; 
     border: none; 
     border-radius: 0; 
