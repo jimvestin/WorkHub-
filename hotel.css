@@ -255,12 +255,12 @@ h3 {
 }
 
 
-/* ser till att bilder2 är på höger side */
+/* ser till att bilder2 är på höger sida */
 .bilder2 .bildfil img {
     grid-column: 2;
     grid-row: 1;
 }
-/* ser till att texten är på vänster side */
+/* ser till att texten är på vänster sida */
 .bilder2 .familjeinfo{
     grid-column: 1;
     grid-row: 1;
