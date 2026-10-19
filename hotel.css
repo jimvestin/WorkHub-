@@ -52,7 +52,6 @@ h3 {
     font-weight: 500;
 }
 
-
 /* Jim Header / Navbar */
 
 .header {
@@ -81,7 +80,6 @@ h3 {
     font-weight: 500;
 }
 
-
 .navbar {
     display: flex;
     align-items: center;
@@ -91,7 +89,6 @@ h3 {
     margin-right: 40px;
 }
 
-
 .navbar a {
     color: var(--white);
     text-decoration: none;
@@ -100,7 +97,6 @@ h3 {
     font-size: 20px;
     font-weight: 400;
 }
-
 
 .navbar a:hover {
     color: var(--sand);
@@ -114,8 +110,6 @@ h3 {
     
 } 
      
-
-
 .card-group { 
     display: grid; 
 } 
@@ -129,7 +123,6 @@ h3 {
     width: 100%;
 }
 
-
 .carousel .slider-button {
     color: #FFFFFF;
     
@@ -138,7 +131,6 @@ h3 {
 .carousel {
     --swiper-navigation-size: 60px;
 }
-
 
 .card-group .image,
 .card-group .card-info {
@@ -183,9 +175,7 @@ h3 {
     margin-left: 6px;
 }
 
- 
-
-.hotellinfo {
+ .hotellinfo {
     text-align: center;
 }
 
@@ -193,12 +183,13 @@ h3 {
     padding: 40px;
 }
 
-
 .bilderalla {
     display: grid;
     grid-template-columns: 1fr;
-    gap: 30px;
     background-color: #F5F1E8;
+    max-width: 1400px;
+    width: 90%;
+    margin: auto;
 }
 
 .bilder,
@@ -207,7 +198,7 @@ h3 {
     grid-template-columns: 1fr;
     gap: 20px;
     list-style: none;
-    padding: 10px;
+    padding: 0px;
     margin: 0;
 }
 
@@ -230,7 +221,7 @@ h3 {
 
 .bildfil img {
     width: 100%;
-    height: 350px;
+    height: 550px;
     object-fit: cover;
 }
 
@@ -242,16 +233,34 @@ h3 {
     gap: 10px;
 }
 
-.familjerubrik,
-.familjetext {
-    margin: 0px;
+.familjerubrik {
+    align-self: center;
 }
+
 
 .familjetext {
     grid-column: 2;
     grid-row: 1;
     margin: 0;
-    font-size: 25px;
+    font-size: 20px;
+}
+
+.button-text {
+    display: inline-block;
+    color: #FFFFFF;
+    background-color: #4F6354;
+    padding: 8px 20px;
+    border: none;
+    border-radius: 0;
+    box-shadow: none;
+    text-decoration: none !important;
+    align-self: center;
+    margin-top: 50px;
+    
+}
+
+.button-text i{
+    margin-left: 6px;
 }
 
 
@@ -264,6 +273,8 @@ h3 {
 .bilder2 .familjeinfo{
     grid-column: 1;
     grid-row: 1;
+    margin-left: 30px;
+    
 }
 
 
@@ -280,14 +291,12 @@ h3 {
     font-size: 14px;
 }
 
-
 /* Vänster sida footer */
 
 .footer-info {
     display: flex;
     gap: 40px;
 }
-
 
 /* Höger sida footer */
 
@@ -300,7 +309,6 @@ h3 {
     flex-direction: column;
 }
 
-
 .footer h3 {
     font-weight: bold;
 
@@ -308,17 +316,13 @@ h3 {
     margin-bottom: 10px;
 }
 
-
 .footer p {
     margin: 0;
 }
 
-
 .footer a {
     display: block;
-
     margin-bottom: 8px;
-
     text-decoration: none;
     color: var(--white);
 }
