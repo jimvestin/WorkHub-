@@ -24,13 +24,13 @@
      <header class="header">
 
     <a href="index.html" class="logo">
-        WorkHub 
+        WorkHub Hotell
     </a>
 
     <nav class="navbar">
         <a href="hotel.html">Hotell</a>
         <a href="spa.html">Spa</a>
-        <a href="restaurant.html">Restaurang</a>
+        <a href="index.html">Home</a>
         <a href="conference.html">Konferens</a>
     </nav>
 
@@ -43,7 +43,7 @@
 <section>
     <div class="hero">
      <div class="heropic">
-        <img src="img/restauranthero.jpg" alt="Restaurant picture">
+        <img src="Pic/restauranthero.jpg" alt="Restaurant picture">
      </div>
      <div class="herotext">
         
@@ -57,34 +57,40 @@
     </div>
 
 </section>
-<section class="offers">
+<section class="offers">    
 
-    <h2>Våra erbjudanden</h2>
+    
 
-    <div id="offers-container"></div>
-
+    <div class="offers-form" id="offers-container">
+        <h2>Boknings Formulär</h2>
     <form id="booking-form" novalidate>
 
-        <label for="name">Namn</label>
+        <label for="name">Namn:</label>
         <input type="text" id="name"> <p id="name-error"></p>
 
-        <label for="email">E-post</label>
+        <label for="email">E-post:</label>
         <input type="text" id="email"> <p id="email-error"></p>
 
-        <label for="quantity">Antal personer (1-5)</label>
+        <label for="quantity">Antal personer (1-5):</label>
         <input type="number" id="quantity" value="1"> <p id="quantity-error"></p>
 
         <div id="price">Välj ett erbjudande</div>
         <button type="submit">Bekräfta bokning</button>
         <button type="button" id="reset-btn">Börja om</button>
-
+        
     </form>
-
-    <div id="confirmation"></div>
+        <div id="confirmation"></div>
+    </div>
+     
+        <div class="Picoffers">
+        <img src="Pic/smakbaren-sinnenas-spa.jpg" alt="Bild på mat från restaurang">
+    </div>
+    
 
 </section>
 
 </main>
+
 <footer class="footer">
 
 
