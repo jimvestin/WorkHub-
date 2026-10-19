@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+     <meta charset="UTF-8">
+     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/normalize/8.0.1/normalize.min.css">
+
+     <link rel="preconnect" href="https://fonts.googleapis.com">
+     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+
+     <link href="https://fonts.googleapis.com/css2?family=Lato:wght@300;400;700&family=Playfair+Display:wght@400;500;600;700&display=swap" rel="stylesheet">
+
+     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css">
+     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@12/swiper-bundle.min.css">
+     <link rel="stylesheet" href="conference.css">
+     <script src="https://cdn.jsdelivr.net/npm/swiper@12/swiper-bundle.min.js" defer></script>
+     <script src="conference.js" defer></script>
+     <title> - Hotell Workhub Konferens.</title>
+</head>
+<body> 
+<h1> Här bokar du din konferens</h1>
+
+<div class="container">
+  <div id="offers">
+     <!-- JavaScript lägger in erbjudandena här  -->
+
+
+</div>
+
+<!-- Bokningsformulär -->
+<div class="form-field" id="bookingForm">
+
+  <label for="company">Företag:</label>
+  <input type="text" id="company">
+  <p id="companyError"></p>
+
+  <label for="contactPerson">Kontaktperson</label>
+  <input type="text" id="contactPerson">
+  <p id="contactPersonError"></p>
+
+  <label for="email">E-postadress:</label>
+  <input type="text" id="email">
+  <p id="emailError"></p>
+
+  <label for="phone">Telefon:</label>
+  <input type="tel" id="phone">
+  <p id="phoneError"></p>
+
+  <label for="date">Bokningsdatum:</label>
+  <input type="date" id="date">
+  <p id="dateError"></p>
+  
+  <button type="button" id="submitBooking">
+  Bekräfta bokning
+</button>
+</div>
+ <!-- Antal timmar -->
+  <div class="quantity">
+    <label for="quantity">Antal timmar (1-5):</label>
+    <input
+      type="number"
+      id="quantity"
+      min="1"
+      max="5"
+      step="1"
+      value=""
+    >
+  </div>
+
+  <p id="totalPrice">Totalkostand 0 kr</p>
+
+
+</div>
+</body>
+
+
