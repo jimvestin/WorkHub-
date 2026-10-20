@@ -7,6 +7,10 @@ function visaForm(button) {
    
     //hittar html klassen bokning för bokning som är hidden//
     const form = info.querySelector(".bokning");
+    //hittar html klassen//
+    const rubrik = info.querySelector(".familjerubrik");
+    //hittar html klassen//
+    const text = info.querySelector(".familjetext");
     
     //kollar så att formuläret är öppet//
     const isOpen = form.hidden;
@@ -14,6 +18,10 @@ function visaForm(button) {
     //Det här är va som gör att vi kan visa bokning när vi klickar på knappen//
     //form.hidden och !form.hidden är det som togglar på och hidden funktionen i html//
     form.hidden = !form.hidden;
+
+    //Detta får rubriken och texten att försvinna//
+    rubrik.hidden = isOpen;
+    text.hidden = isOpen;
     
     //återställer formuläret när den stängs//
       if (!isOpen) {
