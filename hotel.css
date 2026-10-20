@@ -278,6 +278,25 @@ h3 {
 }
 
 
+.bokning {
+    display: grid;
+    padding: 1rem;
+    gap: 0.5rem;
+    
+}
+
+.bokning[hidden] {
+    display: none;
+}
+
+.button-text {
+    cursor: pointer;
+}
+
+.button-text:hover {
+    opacity: 0.5;
+}
+
 /* Alex Footer */
 
 .footer {
