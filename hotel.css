@@ -277,19 +277,35 @@ h3 {
     
 }
 
-
-
 .bokning {
     display: grid;
     padding: 1rem;
     gap: 0.5rem;
-    grid-template-columns: 1fr;
+    grid-template-columns:1fr 1fr;
     
 }
 
-.bokning input {
-    width: 50%;
+.formgrupp {
+    display: flex;
+    flex-direction: column;
+    gap: 0.5rem;
 }
+
+.formgrupp input {
+    width: 100%;
+    box-sizing: border-box;
+}
+
+.formgrupp2 {
+    display: flex;
+    flex-direction: column;
+    gap: 0.5rem;
+}
+
+#bekräftaBokning {
+    grid-column: 1 / -1;
+}
+
 
 .bokning[hidden] {
     display: none;

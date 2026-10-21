@@ -116,13 +116,16 @@
                                 <input type="text" id="firstName" class="bokning-input">
 
                                 <label for="lastName" class="">Last Name</label>
-                                <input type="text" id="firstName" class="bokning-input">
+                                <input type="text" id="lastName" class="bokning-input">
 
                                 <label for="email" class="">Email</label>
-                                <input type="text" id="firstName" class="bokning-input">
+                                <input type="text" id="email" class="bokning-input">
 
                                 <label for="telephone" class="">Phone number</label>
-                                <input type="text" id="firstName" class="bokning-input">
+                                <input type="text" id="phone" class="bokning-input">
+
+                                <label for="antal" class="">Hur många är ni</label>
+                                <input type="" id="antalPersoner" class="bokning-input">
                                 
                             </form>
                             </div>
@@ -148,14 +151,17 @@
                                 <label for="firstName" class="">First Name</label>
                                 <input type="text" id="firstName" class="bokning-input">
 
-                                <label for="lastName" class="">First Name</label>
-                                <input type="text" id="firstName" class="bokning-input">
+                                <label for="lastName" class="">Last Name</label>
+                                <input type="text" id="lasttName" class="bokning-input">
 
                                 <label for="email" class="">Email</label>
-                                <input type="text" id="firstName" class="bokning-input">
+                                <input type="text" id="email" class="bokning-input">
 
                                 <label for="telephone" class="">Phone number</label>
-                                <input type="text" id="firstName" class="bokning-input">
+                                <input type="text" id="phone" class="bokning-input">
+
+                                <label for="antal" class="">Hur många är ni</label>
+                                <input type="" id="antalPersoner" class="bokning-input">
                                 
                             </form>
                             </div>
@@ -181,14 +187,17 @@
                                 <label for="firstName" class="">First Name</label>
                                 <input type="text" id="firstName" class="bokning-input">
 
-                                <label for="lastName" class="">First Name</label>
-                                <input type="text" id="firstName" class="bokning-input">
+                                <label for="lastName" class="">Last Name</label>
+                                <input type="text" id="lastName" class="bokning-input">
 
                                 <label for="email" class="">Email</label>
-                                <input type="text" id="firstName" class="bokning-input">
+                                <input type="text" id="email" class="bokning-input">
 
                                 <label for="telephone" class="">Phone number</label>
-                                <input type="text" id="firstName" class="bokning-input">
+                                <input type="text" id="phone" class="bokning-input">
+
+                                <label for="antal" class="">Hur många är ni</label>
+                                <input type="" id="antalPersoner" class="bokning-input">
                                 
                             </form>
                             </div>
@@ -210,20 +219,42 @@
                             <button type="button" class="button-text" onclick="visaForm(this)">Boka presidentsvit <i class="fa-solid fa-arrow-right"></i></button>
                             <!-- boknings formulär som är hidden -->
                             <form class="bokning" hidden>
-                                
+
+                            <div class="formgrupp">
+
+                                <label for="datum">Bokningsdatum från</label>
+                                <input type="date" id="">
+
                                 <label for="firstName" class="">First Name</label>
                                 <input type="text" id="firstName" class="bokning-input">
 
-                                <label for="lastName" class="">Last Name</label>
-                                <input type="text" id="firstName" class="bokning-input">
-
-                                <label for="email" class="">Email</label>
-                                <input type="text" id="firstName" class="bokning-input">
-
                                 <label for="telephone" class="">Phone number</label>
-                                <input type="text" id="firstName" class="bokning-input">
+                                <input type="text" id="phone" class="bokning-input">
+                                                                
+                                <label for="antal" class="">Hur många är ni</label>
+                                <input type="" id="antalPersoner" class="bokning-input">
+
+                            </div>
                                 
+                            <div class="formgrupp2">
+
+                                <label for="datum">Bokningsdatum tills</label>
+                                <input type="date" id="">
+
+                                <label for="lastName" class="">Last Name</label>
+                                <input type="text" id="lastName" class="bokning-input">
+                                   
+                                <label for="email" class="">Email</label>
+                                <input type="text" id="email" class="bokning-input">
+
+                                
+                                
+                            </div> 
+                                
+                                <button type="button" id="bekräftaBokning">Bekräfta bokning</button>
+
                             </form>
+
                             </div>
                         </div>
                     </div>
