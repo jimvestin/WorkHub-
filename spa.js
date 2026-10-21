@@ -70,6 +70,7 @@ let bookingTreatments = [];
 
 let guestDetails = [];
 let activeGuestNumber = 1;
+let treatmentsValidated = false;
 
 const guestPicker = document.createElement('div');
 guestPicker.classList.add('spa-guest-picker');
@@ -378,7 +379,7 @@ function createGuestTreatment(guestNumber) {
     const select = document.createElement('select');
     select.id = `guest-treatment-${guestNumber}`;
     treatmentLabel.htmlFor = select.id;
-    select.setAttribute('aria-describedby', 'offer-error');
+    select.setAttribute('aria-describedby', `${select.id}-error`);
 
 
     const defaultOption = document.createElement('option');
@@ -457,6 +458,14 @@ function createGuestTreatment(guestNumber) {
     guestTreatment.appendChild(treatmentLabel);
     guestTreatment.appendChild(select);
 
+    // Jim Felmeddelande för personens behandling
+
+    const treatmentError = document.createElement('p');
+    treatmentError.classList.add('error');
+    treatmentError.id = `${select.id}-error`;
+    treatmentError.setAttribute('aria-live', 'polite');
+    guestTreatment.appendChild(treatmentError);
+
     // Jim Genväg till behandlingarna
 
     const showTreatmentsButton = document.createElement('button');
@@ -507,11 +516,7 @@ function renderGuestTreatments() {
     bookingTreatments = [];
 
 
-    if (
-        !Number.isInteger(guestCount) ||
-        guestCount < 1 ||
-        guestCount > 5
-    ) {
+    if (!isValidGuestCount(guestCount)) {
 
         updateBookingSummary();
 
@@ -540,15 +545,6 @@ function renderGuestTreatments() {
 // Jim Sparar valda behandlingar och namn
 
 function updateTreatments() {
-
-    // Jim Rensar tidigare felmarkeringar
-
-    const selects = guestTreatmentsContainer.querySelectorAll('select');
-
-    for (let i = 0; i < selects.length; i++) {
-        selects[i].removeAttribute('aria-invalid');
-    }
-
 
     bookingTreatments = [];
     guestDetails = [];
@@ -607,7 +603,11 @@ function updateTreatments() {
     }
 
 
-    offerError.textContent = '';
+    // Jim Behåller fel tills behandlingen är rättad
+
+    if (treatmentsValidated) {
+        validateTreatments();
+    }
 
 
     updateBookingSummary();
@@ -835,101 +835,57 @@ function updateDateAndTimeSummary() {
 function updateBookingSummary() {
 
     updateOfferCards();
-
+    updateDateAndTimeSummary();
     selectedTreatments.textContent = '';
 
+    const guestCount = Number(guestInput.value);
+    const priceLabel = totalPriceText.parentElement.querySelector('span');
 
-    const guestCount =
-        Number(guestInput.value);
+    priceLabel.textContent = 'Pris';
 
-
-    updateDateAndTimeSummary();
-
-
-    if (bookingTreatments.length === 0) {
-
-        const message =
-            document.createElement('p');
-
-        message.textContent =
-            'Välj behandling för varje person.';
-
-
-        selectedTreatments.appendChild(
-            message
-        );
-
-
-        totalPriceText.textContent =
-            '0 kr';
-
-
+    if (!isValidGuestCount(guestCount)) {
+        totalPriceText.textContent = 'Ange 1 till 5 personer';
         return;
     }
 
+    // Jim Visar varje persons val
 
-    // Jim Skriver ut personernas val
+    const selects = guestTreatmentsContainer.querySelectorAll('select');
 
-    for (
-        let i = 0;
-        i < bookingTreatments.length;
-        i++
-    ) {
+    for (let i = 0; i < selects.length; i++) {
+        const offer = getOfferById(Number(selects[i].value));
 
-        const treatment =
-            bookingTreatments[i];
+        if (offer === null) {
+            const missingTreatment = document.createElement('p');
+            missingTreatment.classList.add('treatment-summary');
+            missingTreatment.textContent = `Person ${i + 1} behöver välja behandling.`;
+            selectedTreatments.appendChild(missingTreatment);
+        }
+    }
 
+    if (bookingTreatments.length === 0) {
+        totalPriceText.textContent = 'Välj behandling';
+        return;
+    }
 
-        const treatmentText =
-            document.createElement('p');
-
-        treatmentText.classList.add(
-            'treatment-summary'
-        );
-
-
+    for (let i = 0; i < bookingTreatments.length; i++) {
+        const treatment = bookingTreatments[i];
+        const treatmentText = document.createElement('p');
+        treatmentText.classList.add('treatment-summary');
         treatmentText.textContent =
             `Person ${treatment.guestNumber} - ${treatment.guestName}: ${treatment.offer.name} - ${treatment.offer.price} kr`;
-
-
-        selectedTreatments.appendChild(
-            treatmentText
-        );
-
+        selectedTreatments.appendChild(treatmentText);
     }
 
+    // Jim Skiljer delsumma från totalpris
 
-    // Jim Visar om behandling saknas
-
-    if (
-        Number.isInteger(guestCount) &&
-        bookingTreatments.length < guestCount
-    ) {
-
-        const missingTreatment =
-            document.createElement('p');
-
-        missingTreatment.classList.add(
-            'treatment-summary'
-        );
-
-        missingTreatment.textContent =
-            'Alla personer har inte valt behandling.';
-
-
-        selectedTreatments.appendChild(
-            missingTreatment
-        );
-
+    if (bookingTreatments.length < guestCount) {
+        priceLabel.textContent = 'Delsumma';
+    } else {
+        priceLabel.textContent = 'Totalt';
     }
 
-
-    const totalPrice =
-        calculateTotalPrice();
-
-
-    totalPriceText.textContent =
-        `${totalPrice} kr`;
+    totalPriceText.textContent = `${calculateTotalPrice()} kr`;
 }
 
 
@@ -1020,11 +976,21 @@ function validateEmail() {
     }
 
 
-    if (email.includes(' ')) {
+    // Jim Kontrollerar blanktecken i adressen
+
+    let hasWhitespace = false;
+
+    for (let i = 0; i < email.length; i++) {
+        if (email[i].trim() === '') {
+            hasWhitespace = true;
+        }
+    }
+
+    if (hasWhitespace) {
 
         showError(
             emailInput,
-            'E-postadressen får inte innehålla blanksteg.'
+            'E-postadressen får inte innehålla blanktecken.'
         );
 
 
@@ -1089,6 +1055,7 @@ function validateEmail() {
 
 
     if (
+        emailDomain.includes('..') ||
         domainParts[0] === '' ||
         domainParts[
             domainParts.length - 1
@@ -1183,6 +1150,15 @@ function validateTime() {
 }
 
 
+// Jim Kontrollerar giltigt antal personer
+
+function isValidGuestCount(guestCount) {
+    return Number.isInteger(guestCount) &&
+        guestCount >= 1 &&
+        guestCount <= 5;
+}
+
+
 // Jim Kontrollerar antal personer
 
 function validateGuests() {
@@ -1191,11 +1167,7 @@ function validateGuests() {
         Number(guestInput.value);
 
 
-    if (
-        !Number.isInteger(guestCount) ||
-        guestCount < 1 ||
-        guestCount > 5
-    ) {
+    if (!isValidGuestCount(guestCount)) {
 
         showError(
             guestInput,
@@ -1220,40 +1192,38 @@ function validateGuests() {
 
 function validateTreatments() {
 
-    // Jim Markerar saknad behandling
+    treatmentsValidated = true;
 
+    const guestCount = Number(guestInput.value);
     const selects = guestTreatmentsContainer.querySelectorAll('select');
 
-    for (let i = 0; i < selects.length; i++) {
-        if (selects[i].value === '') {
-            selects[i].setAttribute('aria-invalid', 'true');
-        } else {
-            selects[i].removeAttribute('aria-invalid');
-        }
-    }
-
-
-    const guestCount =
-        Number(guestInput.value);
-
-
-    if (
-        bookingTreatments.length !==
-        guestCount
-    ) {
-
-        offerError.textContent =
-            'Välj en behandling för varje person.';
-
-
+    if (!isValidGuestCount(guestCount)) {
+        offerError.textContent = '';
         return false;
     }
 
+    let allValid = selects.length === guestCount;
 
-    offerError.textContent = '';
+    // Jim Visar fel vid rätt person
 
+    for (let i = 0; i < selects.length; i++) {
+        const offer = getOfferById(Number(selects[i].value));
 
-    return true;
+        if (offer === null) {
+            showError(selects[i], `Välj en behandling för person ${i + 1}.`);
+            allValid = false;
+        } else {
+            clearError(selects[i]);
+        }
+    }
+
+    if (allValid) {
+        offerError.textContent = '';
+    } else {
+        offerError.textContent = 'Välj en behandling för varje person.';
+    }
+
+    return allValid;
 }
 
 
@@ -1451,6 +1421,7 @@ function disableBooking() {
 function resetBooking() {
 
     bookingForm.reset();
+    treatmentsValidated = false;
     guestDetails = [];
     activeGuestNumber = 1;
 
@@ -1506,6 +1477,12 @@ nameInput.addEventListener(
 
         updateFirstGuestName();
 
+        // Jim Kontrollerar namnet när ett fel rättas
+
+        if (nameInput.getAttribute('aria-invalid') === 'true') {
+            validateName();
+        }
+
     }
 );
 
@@ -1560,11 +1537,7 @@ guestInput.addEventListener(
             Number(guestInput.value);
 
 
-        if (
-            Number.isInteger(guestCount) &&
-            guestCount >= 1 &&
-            guestCount <= 5
-        ) {
+        if (isValidGuestCount(guestCount)) {
 
             clearError(
                 guestInput
@@ -1587,7 +1560,7 @@ guestInput.addEventListener(
             bookingTreatments =
                 [];
 
-
+            offerError.textContent = '';
             updateBookingSummary();
 
         }
