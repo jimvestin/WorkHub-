@@ -1,0 +1,80 @@
+/* Färg schema */
+
+:root {
+    --green: #4F6354;     /* Main color Header/Footer */
+    --beige: #F5F1E8;    /* Background color */
+    --accent: #B9785D;   /* Accent color Buttons and details */
+    --sand: #D8C9B6;     /* Sections and cards */
+    --text: #2F302C;     /* Normal text */
+    --white: #FFFFFF;    /* White text on dark background */
+}
+
+
+/* Generell style för hela sidan */
+
+body {
+    background-color: var(--beige);
+    font-family: "Lato", sans-serif;
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+}
+
+
+/* Gör så att main-sektionen fyller hela utrymmet */
+
+main {
+    flex: 1;
+}
+
+
+h1,
+h2,
+h3 {
+    font-family: "Playfair Display", serif;
+    color: var(--text);
+}
+
+
+h1 {
+    font-size: 48px;
+    font-weight: 500;
+
+}
+
+
+h2 {
+    font-size: 32px;
+    font-weight: 500;
+}
+
+
+h3 {
+    font-size: 20px;
+    font-weight: 500;
+}
+
+.container {
+    height: 100vh;
+    display: flex;
+    justify-content: center;
+    place-items: center;
+}
+
+
+#offers {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 20px;
+}
+
+.offer-card {
+  flex: 1 1 250px;
+  padding: 20px;
+  border: 1px solid #ccc;
+  border-radius: 10px;
+}
+
+#bookingForm {
+  display: none;
+}
