@@ -90,7 +90,7 @@
             </h2>
 
             <p class="spa-intro-text">
-                Kliv in i en värld av lugn och harmoni.
+                Kliv in i en värld av harmoni.
                 Låt kroppen slappna av, sinnet komma till ro
                 och njut av en stund helt för dig själv.
             </p>
@@ -109,11 +109,11 @@
                 </p>
 
                 <h2>
-                    Välj din spa-upplevelse
+                    Välj din spa upplevelse
                 </h2>
 
                 <p>
-                    Tre behandlingar med olika karaktär för avkoppling,
+                    Tre behandlingar med olika typer av avkoppling,
                     återhämtning och välbefinnande.
                     Alla behandlingar är 60 minuter.
                 </p>
@@ -180,6 +180,8 @@
                             <input
                                 type="text"
                                 id="customer-name"
+                                name="customerName"
+                                autocomplete="name"
                                 placeholder="Ditt namn"
                             >
 
@@ -197,6 +199,8 @@
                             <input
                                 type="email"
                                 id="customer-email"
+                                name="customerEmail"
+                                autocomplete="email"
                                 placeholder="namn@email.se"
                             >
 
@@ -222,6 +226,7 @@
                             <input
                                 type="date"
                                 id="booking-date"
+                                name="bookingDate"
                             >
 
                             <p class="error"></p>
@@ -235,7 +240,7 @@
                                 Tid
                             </label>
 
-                            <select id="booking-time">
+                            <select id="booking-time" name="bookingTime">
 
                                 <option value="">
                                     Välj tid
@@ -300,6 +305,7 @@
                             <input
                                 type="number"
                                 id="guest-count"
+                                name="guestCount"
                                 value="1"
                                 min="1"
                                 max="5"
@@ -439,6 +445,73 @@
 
 
     </main>
+
+
+<footer class="footer">
+
+
+    <!--Gemmensam footer som alex gjort -->
+
+    <div class="footer-info">
+
+        <div>
+
+            <h3>Postadress</h3>
+
+            <p>
+                Tjotahejti 32
+                <br>
+                123 45
+                <br>
+                Långt bort
+            </p>
+
+        </div>
+
+
+        <div>
+
+            <h3>Kontakt hotell</h3>
+
+            <p>
+                Telefon: 123 456 78
+                <br>
+                E-post: Hotell@Workhub.com
+            </p>
+
+        </div>
+
+
+        <div>
+
+            <h3>Kontakt konferens</h3>
+
+            <p>
+                Telefon: 876 543 21
+                <br>
+                E-post: Konferens@Workhub.com
+            </p>
+
+        </div>
+
+    </div>
+
+
+    <div class="footer-links">
+
+        <h3>Sociala medier</h3>
+
+        <a href="https://www.instagram.com/" target="_blank">
+            Instagram
+        </a>
+
+        <a href="https://www.facebook.com/" target="_blank">
+            Facebook
+        </a>
+
+    </div>
+
+</footer>
 
 
 </body>

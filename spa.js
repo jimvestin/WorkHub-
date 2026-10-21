@@ -223,7 +223,15 @@ function updateOfferCards() {
         const button = buttons[i];
         const isSelected = select !== null && select.value === button.dataset.offerId;
 
-        button.querySelector('.spa-card-choice').textContent = `Välj för person ${activeGuestNumber}`;
+        // Jim Visar valt kort med text
+
+        const choiceText = button.querySelector('.spa-card-choice');
+
+        if (isSelected) {
+            choiceText.textContent = `Vald för person ${activeGuestNumber}`;
+        } else {
+            choiceText.textContent = `Välj för person ${activeGuestNumber}`;
+        }
         button.setAttribute('aria-pressed', isSelected);
         button.classList.toggle('spa-card-selected', isSelected);
         button.disabled = select === null || select.disabled || bookingButton.disabled;
@@ -366,6 +374,8 @@ function createGuestTreatment(guestNumber) {
 
     nameField.classList.add('guest-name');
     nameField.id = `guest-name-${guestNumber}`;
+    nameField.name = `guestName${guestNumber}`;
+    nameField.autocomplete = `section-guest${guestNumber} name`;
     nameLabel.htmlFor = nameField.id;
 
 
@@ -378,6 +388,7 @@ function createGuestTreatment(guestNumber) {
 
     const select = document.createElement('select');
     select.id = `guest-treatment-${guestNumber}`;
+    select.name = `guestTreatment${guestNumber}`;
     treatmentLabel.htmlFor = select.id;
     select.setAttribute('aria-describedby', `${select.id}-error`);
 
@@ -505,10 +516,12 @@ function renderGuestTreatments() {
     const guestCount = Number(guestInput.value);
 
 
-    if (guestCount > guestDetails.length && guestDetails.length > 0) {
-        activeGuestNumber = guestDetails.length + 1;
+    const previousCount = guestTreatmentsContainer.querySelectorAll('select').length;
+
+    if (guestCount > previousCount && previousCount > 0) {
+        activeGuestNumber = previousCount + 1;
     } else {
-        activeGuestNumber = Math.min(activeGuestNumber, guestCount);
+        activeGuestNumber = Math.max(1, Math.min(activeGuestNumber, guestCount));
     }
 
     guestTreatmentsContainer.textContent = '';
@@ -547,7 +560,6 @@ function renderGuestTreatments() {
 function updateTreatments() {
 
     bookingTreatments = [];
-    guestDetails = [];
 
 
     const guestCards =
@@ -563,10 +575,12 @@ function updateTreatments() {
             guestCards[i].querySelector('.guest-name');
 
 
-        guestDetails.push({
+        // Jim Behåller sparade personer när antalet minskas
+
+        guestDetails[i] = {
             name: nameField.value,
             offerId: select.value
-        });
+        };
 
         const guestNumber = i + 1;
 
@@ -692,47 +706,36 @@ function calculateTotalPrice() {
 }
 
 
+// Jim Hämtar svensk tid och datum
+
+function getSwedishDateTime() {
+    const parts = new Intl.DateTimeFormat('sv-SE', {
+        timeZone: 'Europe/Stockholm',
+        year: 'numeric',
+        month: '2-digit',
+        day: '2-digit',
+        hour: '2-digit',
+        minute: '2-digit',
+        hourCycle: 'h23'
+    }).formatToParts(new Date());
+
+    const values = {};
+
+    for (let i = 0; i < parts.length; i++) {
+        values[parts[i].type] = parts[i].value;
+    }
+
+    return {
+        date: `${values.year}-${values.month}-${values.day}`,
+        time: `${values.hour}:${values.minute}`
+    };
+}
+
+
 // Jim Hämtar dagens svenska datum
 
 function getSwedishDate() {
-
-    const dateParts =
-        new Intl.DateTimeFormat(
-            'sv-SE',
-            {
-                timeZone: 'Europe/Stockholm',
-                year: 'numeric',
-                month: '2-digit',
-                day: '2-digit'
-            }
-        ).formatToParts(new Date());
-
-
-    let year = '';
-    let month = '';
-    let day = '';
-
-
-    for (let i = 0; i < dateParts.length; i++) {
-
-        if (dateParts[i].type === 'year') {
-
-            year = dateParts[i].value;
-
-        } else if (dateParts[i].type === 'month') {
-
-            month = dateParts[i].value;
-
-        } else if (dateParts[i].type === 'day') {
-
-            day = dateParts[i].value;
-
-        }
-
-    }
-
-
-    return `${year}-${month}-${day}`;
+    return getSwedishDateTime().date;
 }
 
 
@@ -835,7 +838,6 @@ function updateDateAndTimeSummary() {
 function updateBookingSummary() {
 
     updateOfferCards();
-    updateDateAndTimeSummary();
     selectedTreatments.textContent = '';
 
     const guestCount = Number(guestInput.value);
@@ -1141,9 +1143,16 @@ function validateTime() {
     }
 
 
-    clearError(
-        bookingTimeInput
-    );
+    // Jim Stoppar tider som redan har passerat
+
+    const now = getSwedishDateTime();
+
+    if (bookingDateInput.value === now.date && bookingTimeInput.value <= now.time) {
+        showError(bookingTimeInput, 'Tiden har passerat. Välj en senare tid eller ett annat datum.');
+        return false;
+    }
+
+    clearError(bookingTimeInput);
 
 
     return true;
@@ -1265,7 +1274,7 @@ function showConfirmation() {
         document.createElement('h3');
 
     title.textContent =
-        'Din bokningsförfrågan är mottagen';
+        'Tack för din bokning!';
 
 
     const name =
@@ -1303,7 +1312,18 @@ function showConfirmation() {
         `Antal personer: ${guestCount}`;
 
 
+    // Jim Visar bokningsmeddelandet
+
+    title.id = 'confirmation-title';
+    confirmationCard.setAttribute('tabindex', '-1');
+    confirmationCard.setAttribute('role', 'region');
+    confirmationCard.setAttribute('aria-labelledby', title.id);
+
+    const notice = document.createElement('p');
+    notice.textContent = 'Hotellet har mottagit er bokning. Varmt välkomna!';
+
     confirmationCard.appendChild(title);
+    confirmationCard.appendChild(notice);
     confirmationCard.appendChild(name);
     confirmationCard.appendChild(email);
     confirmationCard.appendChild(date);
@@ -1489,42 +1509,27 @@ nameInput.addEventListener(
 
 // Jim Ändrar datum
 
-bookingDateInput.addEventListener(
-    'change',
-    () => {
+bookingDateInput.addEventListener('change', () => {
+    updateDateAndTimeSummary();
 
-        updateDateAndTimeSummary();
-
-        if (
-            bookingDateInput.value !== ''
-        ) {
-
-            validateDate();
-
-        }
-
+    if (bookingDateInput.value !== '' || bookingDateInput.getAttribute('aria-invalid') === 'true') {
+        validateDate();
     }
-);
+
+    // Jim Kontrollerar tiden igen när datumet ändras
+
+    if (bookingTimeInput.value !== '' || bookingTimeInput.getAttribute('aria-invalid') === 'true') {
+        validateTime();
+    }
+});
 
 
 // Jim Ändrar tid
 
-bookingTimeInput.addEventListener(
-    'change',
-    () => {
-
-        updateDateAndTimeSummary();
-
-        if (
-            bookingTimeInput.value !== ''
-        ) {
-
-            validateTime();
-
-        }
-
-    }
-);
+bookingTimeInput.addEventListener('change', () => {
+    updateDateAndTimeSummary();
+    validateTime();
+});
 
 
 // Jim Ändrar antal personer
@@ -1569,28 +1574,11 @@ guestInput.addEventListener(
 );
 
 
-// Jim Kontrollerar e-post när användaren skriver
+// Jim Kontrollerar e-post även när fältet töms
 
-emailInput.addEventListener(
-    'input',
-    () => {
-
-        if (
-            emailInput.value.trim() !== ''
-        ) {
-
-            validateEmail();
-
-        } else {
-
-            clearError(
-                emailInput
-            );
-
-        }
-
-    }
-);
+emailInput.addEventListener('input', () => {
+    validateEmail();
+});
 
 
 // Jim Skickar bokningen
@@ -1640,6 +1628,19 @@ bookingForm.addEventListener(
 
             disableBooking();
 
+            // Jim Flyttar fokus till bekräftelsen
+
+            confirmation.querySelector('.confirmation-card').focus();
+
+        } else {
+
+            // Jim Flyttar fokus till första felet
+
+            const firstInvalidField = bookingForm.querySelector('[aria-invalid="true"]');
+
+            if (firstInvalidField !== null) {
+                firstInvalidField.focus();
+            }
         }
 
     }
@@ -1667,4 +1668,4 @@ renderOffers();
 renderGuestTreatments();
 
 updateDateAndTimeSummary();
-updateBookingSummary();
+
