@@ -38,8 +38,10 @@ h3 {
 
 .header {
     width: 100%;
-    height: 100px;
-    padding: 0 50px;
+    min-height: 100px;
+    padding: 20px 50px;
+    flex-wrap: wrap;
+    gap: 20px;
 
     display: flex;
     align-items: center;
@@ -49,6 +51,7 @@ h3 {
 
 
 .logo {
+    margin-left: 0;
     color: var(--white);
     text-decoration: none;
 
@@ -64,7 +67,8 @@ h3 {
     gap: 35px;
 
     margin-left: auto;
-    margin-right: 40px;
+    margin-right: 0;
+    flex-wrap: wrap;
 }
 
 
@@ -175,7 +179,7 @@ h3 {
     margin: 0 auto;
 
     display: grid;
-    grid-template-columns: repeat(3, 1fr);
+    grid-template-columns: repeat(3, minmax(0, 1fr));
     gap: 25px;
 }
 
@@ -194,22 +198,22 @@ h3 {
 
     overflow: hidden;
 
-    transition: transform 0.3s ease;
+    transition: transform 0.3s ease, border-color 0.3s ease;
 }
 
 
-/* Jim Hover på kort */
+/* Jim Bildram */
 
-.spa-card:hover {
-    border-color: var(--green);
-
-    transform: translateY(-5px);
+.spa-card-media {
+    overflow: hidden;
+    border: 1px solid var(--sand);
 }
 
 
 /* Jim Bildbox */
 
 .spa-card-image {
+    display: block;
     width: 100%;
     height: 180px;
 
@@ -224,6 +228,7 @@ h3 {
 /* Jim Hover på bild */
 
 .spa-card:hover .spa-card-image {
+    display: block;
     transform: scale(1.04);
 }
 
@@ -240,7 +245,9 @@ h3 {
 }
 
 
-.spa-card h3 {
+.spa-card h3,
+.spa-card-title {
+    font-family: "Playfair Display", serif;
     margin-top: 0;
     margin-bottom: 15px;
 
@@ -252,7 +259,7 @@ h3 {
 
 
 .spa-card-description {
-    min-height: 150px;
+    min-height: 0;
 
     margin-top: 0;
     margin-bottom: 20px;
@@ -326,7 +333,7 @@ h3 {
 
 .form-row {
     display: grid;
-    grid-template-columns: 1fr 1fr;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
     gap: 30px;
 
     margin-bottom: 35px;
@@ -366,9 +373,22 @@ h3 {
 }
 
 
+/* Jim Fokus */
+
 .form-group input:focus,
-.guest-treatment select:focus {
+.form-group select:focus,
+.guest-treatment input:focus,
+.guest-treatment select:focus,
+.booking-button:focus-visible,
+.reset-button:focus-visible {
     outline: 2px solid var(--green);
+    outline-offset: 3px;
+}
+
+.navbar a:focus-visible,
+.logo:focus-visible {
+    outline: 2px solid var(--white);
+    outline-offset: 4px;
 }
 
 
@@ -378,7 +398,7 @@ h3 {
     margin-bottom: 35px;
 
     display: grid;
-    grid-template-columns: 1fr 2fr;
+    grid-template-columns: minmax(0, 1fr) minmax(0, 2fr);
     gap: 30px;
 
     align-items: end;
@@ -411,7 +431,7 @@ h3 {
     margin-bottom: 35px;
 
     display: grid;
-    grid-template-columns: 1fr 1fr;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
     gap: 20px;
 }
 
@@ -465,7 +485,7 @@ h3 {
     padding: 30px;
 
     display: grid;
-    grid-template-columns: 2fr 1fr;
+    grid-template-columns: minmax(0, 2fr) minmax(0, 1fr);
     gap: 30px;
 
     background-color: var(--sand);
@@ -573,4 +593,302 @@ h3 {
 .confirmation-card p {
     font-size: 16px;
     line-height: 1.6;
+}
+
+/* Jim Innehåll och fält */
+
+.spa-card,
+.form-group,
+.guest-treatment,
+.summary-details {
+    min-width: 0;
+    overflow-wrap: anywhere;
+}
+
+.form-group input,
+.form-group select,
+.guest-treatment input,
+.guest-treatment select {
+    min-width: 0;
+    min-height: 50px;
+    height: auto;
+}
+
+.guest-treatment input {
+    margin-bottom: 20px;
+}
+
+.total-price {
+    flex-wrap: wrap;
+}
+
+.confirmation-card {
+    overflow-wrap: anywhere;
+}
+
+/* Jim Tydliga fel */
+
+.error,
+.offer-error {
+    color: #9B3028;
+    line-height: 1.5;
+}
+
+.form-group input[aria-invalid="true"],
+.form-group select[aria-invalid="true"],
+.guest-treatment select[aria-invalid="true"] {
+    border: 2px solid #9B3028;
+}
+
+/* Jim Låsta fält */
+
+.booking-section input:disabled,
+.booking-section select:disabled,
+.booking-button:disabled {
+    background-color: var(--sand);
+    color: var(--text);
+    cursor: not-allowed;
+    opacity: 1;
+}
+
+/* Jim Läsbar knapp */
+
+.booking-button {
+    background-color: #935B43;
+}
+
+.booking-button:hover:not(:disabled) {
+    background-color: var(--green);
+}
+
+.reset-button:hover {
+    background-color: var(--green);
+}
+
+/* Jim Surfplatta */
+
+@media (max-width: 1000px) {
+    .header {
+        height: auto;
+        padding: 20px 5%;
+    }
+
+    .navbar {
+        gap: 10px 20px;
+    }
+
+    .spa-offers {
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+    }
+
+    .booking-container {
+        padding: 35px;
+    }
+
+    .booking-summary {
+        grid-template-columns: minmax(0, 1fr);
+    }
+}
+
+/* Jim Mobil */
+
+@media (max-width: 700px) {
+    .header {
+        position: static;
+        flex-direction: column;
+        align-items: flex-start;
+    }
+
+    .logo {
+        font-size: 30px;
+    }
+
+    .navbar {
+        margin-left: 0;
+    }
+
+    .navbar a {
+        padding: 12px 0;
+        font-size: 17px;
+    }
+
+    .spa-intro,
+    .spa-section,
+    .booking-section {
+        padding: 45px 5%;
+    }
+
+    .spa-intro h1 {
+        font-size: 38px;
+    }
+
+    .spa-subtitle {
+        font-size: 22px;
+    }
+
+    .section-heading h2,
+    .booking-heading h2 {
+        font-size: 30px;
+    }
+
+    .spa-offers,
+    .form-row,
+    .guest-section,
+    .guest-treatments {
+        grid-template-columns: minmax(0, 1fr);
+    }
+
+    .booking-container,
+    .booking-summary,
+    .confirmation-card,
+    .guest-treatment {
+        padding: 20px;
+    }
+
+    .guest-count-group {
+        max-width: none;
+    }
+
+    .booking-button,
+    .reset-button {
+        width: 100%;
+        min-height: 48px;
+    }
+}
+
+/* Jim Minskad rörelse */
+
+@media (prefers-reduced-motion: reduce) {
+    .spa-card,
+    .spa-card-image {
+        transition: none;
+    }
+
+    .spa-card:hover,
+    .spa-card:hover .spa-card-image {
+        transform: none;
+    }
+}
+
+
+/* Jim Klick behandlingskort */
+
+.spa-card {
+    width: 100%;
+    color: var(--text);
+    font: inherit;
+    text-align: left;
+    cursor: pointer;
+}
+
+.spa-card-media,
+.spa-card-content {
+    width: 100%;
+}
+
+.spa-card-choice {
+    margin: 0 15px 15px;
+    padding: 14px;
+    background-color: var(--green);
+    color: var(--white);
+    text-align: center;
+}
+
+.spa-card:focus-visible {
+    outline: 2px solid var(--green);
+    outline-offset: 3px;
+}
+
+.spa-card-selected {
+    border-color: var(--green);
+    box-shadow: inset 0 0 0 2px var(--green);
+}
+
+.spa-card[aria-pressed="true"] .spa-card-choice {
+    background-color: var(--sand);
+    color: var(--text);
+}
+
+.spa-card:disabled {
+    cursor: not-allowed;
+}
+
+.spa-card:disabled .spa-card-choice {
+    background-color: var(--sand);
+    color: var(--text);
+}
+
+
+/* Jim Väljer person till bilderna */
+
+.spa-guest-picker {
+    max-width: 1050px;
+    margin: 0 auto 20px;
+    display: flex;
+    flex-wrap: wrap;
+    gap: 12px;
+}
+
+.spa-guest-picker button {
+    padding: 12px 20px;
+    border: 1px solid var(--green);
+    background-color: var(--beige);
+    color: var(--green);
+    font: inherit;
+    cursor: pointer;
+}
+
+.spa-guest-picker button[aria-pressed="true"] {
+    background-color: var(--green);
+    color: var(--white);
+}
+
+.spa-guest-picker button:focus-visible {
+    outline: 2px solid var(--green);
+    outline-offset: 3px;
+}
+
+.spa-guest-picker button:disabled {
+    cursor: not-allowed;
+}
+
+
+/* Jim Genväg till behandlingarna */
+
+.show-treatments-button {
+    display: block;
+    margin-top: 12px;
+    padding: 10px 14px;
+    min-height: 44px;
+    border: 1px solid var(--green);
+    background-color: var(--beige);
+    color: var(--green);
+    font: inherit;
+    font-size: 14px;
+    cursor: pointer;
+}
+
+.show-treatments-button:hover:not(:disabled) {
+    background-color: var(--green);
+    color: var(--white);
+}
+
+.show-treatments-button:focus-visible {
+    outline: 2px solid var(--green);
+    outline-offset: 3px;
+}
+
+.show-treatments-button:disabled {
+    cursor: not-allowed;
+    opacity: 0.6;
+}
+
+.spa-offers {
+    scroll-margin-top: 160px;
+}
+
+@media (max-width: 700px) {
+    .spa-offers {
+        scroll-margin-top: 20px;
+    }
 }

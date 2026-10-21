@@ -1,7 +1,5 @@
 // Jim Spa behandlingar
 
-// Jim Spa behandlingar
-
 const offers = [
     {
         id: 1,
@@ -68,12 +66,50 @@ const bookingButton = document.querySelector('.booking-button');
 
 let bookingTreatments = [];
 
+// Jim Sparar personernas val
+
+let guestDetails = [];
+let activeGuestNumber = 1;
+
+const guestPicker = document.createElement('div');
+guestPicker.classList.add('spa-guest-picker');
+guestPicker.setAttribute('role', 'group');
+guestPicker.setAttribute('aria-label', 'Välj person för behandlingen');
+offersContainer.before(guestPicker);
+
+
+// Jim Visar personval ovanför bilderna
+
+function renderGuestPicker() {
+    guestPicker.textContent = '';
+
+    const selects = guestTreatmentsContainer.querySelectorAll('select');
+
+    for (let i = 0; i < selects.length; i++) {
+        const guestNumber = i + 1;
+        const button = document.createElement('button');
+        button.type = 'button';
+        button.textContent = `Person ${guestNumber}`;
+        button.setAttribute('aria-pressed', guestNumber === activeGuestNumber);
+        button.disabled = bookingButton.disabled;
+
+        button.addEventListener('click', () => {
+            activeGuestNumber = guestNumber;
+            updateOfferCards();
+        });
+
+        guestPicker.appendChild(button);
+    }
+}
+
+
 
 // Jim Skapar ett behandlingskort
 
 function createOfferCard(offer) {
 
-    const card = document.createElement('div');
+    const card = document.createElement('button');
+    card.type = 'button';
     card.classList.add('spa-card');
 
 
@@ -83,25 +119,26 @@ function createOfferCard(offer) {
     image.alt = offer.name;
 
 
-    const content = document.createElement('div');
+    const content = document.createElement('span');
     content.classList.add('spa-card-content');
 
 
-    const title = document.createElement('h3');
+    const title = document.createElement('span');
+    title.classList.add('spa-card-title');
     title.textContent = offer.name;
 
 
-    const description = document.createElement('p');
+    const description = document.createElement('span');
     description.classList.add('spa-card-description');
     description.textContent = offer.description;
 
 
-    const duration = document.createElement('p');
+    const duration = document.createElement('span');
     duration.classList.add('spa-card-duration');
     duration.textContent = offer.duration;
 
 
-    const price = document.createElement('p');
+    const price = document.createElement('span');
     price.classList.add('spa-card-price');
     price.textContent = `${offer.price} kr / person`;
 
@@ -111,8 +148,28 @@ function createOfferCard(offer) {
     content.appendChild(duration);
     content.appendChild(price);
 
-    card.appendChild(image);
+    // Jim Bildram för zoom
+
+    const imageFrame = document.createElement('span');
+    imageFrame.classList.add('spa-card-media');
+    imageFrame.appendChild(image);
+
+    card.appendChild(imageFrame);
     card.appendChild(content);
+
+    // Jim Väljer behandling från kortet
+
+    card.dataset.offerId = offer.id;
+    card.setAttribute('aria-pressed', 'false');
+
+    const choiceText = document.createElement('span');
+    choiceText.classList.add('spa-card-choice');
+    choiceText.textContent = 'Välj för person 1';
+    card.appendChild(choiceText);
+
+    card.addEventListener('click', () => {
+        selectOffer(offer.id);
+    });
 
 
     return card;
@@ -129,6 +186,59 @@ function renderOffers() {
 
         offersContainer.appendChild(card);
 
+    }
+}
+
+
+// Jim Synkar kortet med formuläret
+
+function selectOffer(offerId) {
+
+    const select = guestTreatmentsContainer.querySelector(`#guest-treatment-${activeGuestNumber}`);
+
+    if (select === null || select.disabled || bookingButton.disabled) {
+        return;
+    }
+
+    select.value = offerId;
+    updateTreatments();
+    // Jim Börjar vid personuppgifterna
+    if (activeGuestNumber === 1 && nameInput.value.trim() === '') {
+        nameInput.focus();
+    } else {
+        select.focus();
+    }
+}
+
+
+// Jim Markerar vald behandling
+
+function updateOfferCards() {
+
+    const select = guestTreatmentsContainer.querySelector(`#guest-treatment-${activeGuestNumber}`);
+    const buttons = offersContainer.querySelectorAll('.spa-card');
+
+    for (let i = 0; i < buttons.length; i++) {
+        const button = buttons[i];
+        const isSelected = select !== null && select.value === button.dataset.offerId;
+
+        button.querySelector('.spa-card-choice').textContent = `Välj för person ${activeGuestNumber}`;
+        button.setAttribute('aria-pressed', isSelected);
+        button.classList.toggle('spa-card-selected', isSelected);
+        button.disabled = select === null || select.disabled || bookingButton.disabled;
+    }
+
+    const shortcuts = guestTreatmentsContainer.querySelectorAll('.show-treatments-button');
+
+    for (let i = 0; i < shortcuts.length; i++) {
+        shortcuts[i].disabled = bookingButton.disabled;
+    }
+
+    const personButtons = guestPicker.querySelectorAll('button');
+
+    for (let i = 0; i < personButtons.length; i++) {
+        personButtons[i].setAttribute('aria-pressed', i + 1 === activeGuestNumber);
+        personButtons[i].disabled = select === null || bookingButton.disabled;
     }
 }
 
@@ -156,7 +266,7 @@ function getOfferById(offerId) {
 
 function getGuestName(guestNumber, nameField) {
 
-    // Person 1 använder bokarens namn
+    // Jim Använder bokarens namn för person 1
 
     if (guestNumber === 1) {
 
@@ -174,7 +284,7 @@ function getGuestName(guestNumber, nameField) {
     }
 
 
-    // Person 2-5 har frivilligt namn
+    // Jim Frivilligt namn för person 2 till 5
 
     const guestName = nameField.value.trim();
 
@@ -254,6 +364,8 @@ function createGuestTreatment(guestNumber) {
 
 
     nameField.classList.add('guest-name');
+    nameField.id = `guest-name-${guestNumber}`;
+    nameLabel.htmlFor = nameField.id;
 
 
     // Jim Behandlingsfält
@@ -264,6 +376,9 @@ function createGuestTreatment(guestNumber) {
 
 
     const select = document.createElement('select');
+    select.id = `guest-treatment-${guestNumber}`;
+    treatmentLabel.htmlFor = select.id;
+    select.setAttribute('aria-describedby', 'offer-error');
 
 
     const defaultOption = document.createElement('option');
@@ -292,6 +407,25 @@ function createGuestTreatment(guestNumber) {
 
     }
 
+
+    // Jim Återställer sparade val
+
+    const savedGuest = guestDetails[guestNumber - 1];
+
+    if (savedGuest) {
+        select.value = savedGuest.offerId;
+
+        if (guestNumber > 1) {
+            nameField.value = savedGuest.name;
+        }
+    }
+
+    // Jim Väljer aktiv person i formuläret
+
+    guestTreatment.addEventListener('focusin', () => {
+        activeGuestNumber = guestNumber;
+        updateOfferCards();
+    });
 
     // Jim Känner av ändrad behandling
 
@@ -323,6 +457,33 @@ function createGuestTreatment(guestNumber) {
     guestTreatment.appendChild(treatmentLabel);
     guestTreatment.appendChild(select);
 
+    // Jim Genväg till behandlingarna
+
+    const showTreatmentsButton = document.createElement('button');
+    showTreatmentsButton.type = 'button';
+    showTreatmentsButton.classList.add('show-treatments-button');
+    showTreatmentsButton.textContent = 'Se behandlingar';
+    showTreatmentsButton.setAttribute('aria-label', `Se behandlingar för person ${guestNumber}`);
+
+    showTreatmentsButton.addEventListener('click', () => {
+        if (bookingButton.disabled) {
+            return;
+        }
+
+        activeGuestNumber = guestNumber;
+        updateOfferCards();
+
+        const firstCard = offersContainer.querySelector('.spa-card');
+
+        if (firstCard !== null) {
+            firstCard.focus({ preventScroll: true });
+            offersContainer.scrollIntoView({ block: 'start', behavior: 'instant' });
+        }
+    });
+
+    guestTreatment.appendChild(showTreatmentsButton);
+
+
 
     return guestTreatment;
 }
@@ -334,6 +495,12 @@ function renderGuestTreatments() {
 
     const guestCount = Number(guestInput.value);
 
+
+    if (guestCount > guestDetails.length && guestDetails.length > 0) {
+        activeGuestNumber = guestDetails.length + 1;
+    } else {
+        activeGuestNumber = Math.min(activeGuestNumber, guestCount);
+    }
 
     guestTreatmentsContainer.textContent = '';
 
@@ -365,9 +532,8 @@ function renderGuestTreatments() {
 
 
     offerError.textContent = '';
-
-
-    updateBookingSummary();
+    renderGuestPicker();
+    updateTreatments();
 }
 
 
@@ -375,7 +541,17 @@ function renderGuestTreatments() {
 
 function updateTreatments() {
 
+    // Jim Rensar tidigare felmarkeringar
+
+    const selects = guestTreatmentsContainer.querySelectorAll('select');
+
+    for (let i = 0; i < selects.length; i++) {
+        selects[i].removeAttribute('aria-invalid');
+    }
+
+
     bookingTreatments = [];
+    guestDetails = [];
 
 
     const guestCards =
@@ -390,6 +566,11 @@ function updateTreatments() {
         const nameField =
             guestCards[i].querySelector('.guest-name');
 
+
+        guestDetails.push({
+            name: nameField.value,
+            offerId: select.value
+        });
 
         const guestNumber = i + 1;
 
@@ -653,6 +834,8 @@ function updateDateAndTimeSummary() {
 
 function updateBookingSummary() {
 
+    updateOfferCards();
+
     selectedTreatments.textContent = '';
 
 
@@ -762,6 +945,12 @@ function showError(input, message) {
         formGroup.querySelector('.error');
 
 
+    // Jim Kopplar felet till fältet
+
+    error.id = `${input.id}-error`;
+    input.setAttribute('aria-describedby', error.id);
+    input.setAttribute('aria-invalid', 'true');
+
     error.textContent =
         message;
 }
@@ -779,6 +968,7 @@ function clearError(input) {
         formGroup.querySelector('.error');
 
 
+    input.removeAttribute('aria-invalid');
     error.textContent = '';
 }
 
@@ -1030,6 +1220,19 @@ function validateGuests() {
 
 function validateTreatments() {
 
+    // Jim Markerar saknad behandling
+
+    const selects = guestTreatmentsContainer.querySelectorAll('select');
+
+    for (let i = 0; i < selects.length; i++) {
+        if (selects[i].value === '') {
+            selects[i].setAttribute('aria-invalid', 'true');
+        } else {
+            selects[i].removeAttribute('aria-invalid');
+        }
+    }
+
+
     const guestCount =
         Number(guestInput.value);
 
@@ -1239,6 +1442,7 @@ function disableBooking() {
 
 
     bookingButton.disabled = true;
+    updateOfferCards();
 }
 
 
@@ -1247,6 +1451,8 @@ function disableBooking() {
 function resetBooking() {
 
     bookingForm.reset();
+    guestDetails = [];
+    activeGuestNumber = 1;
 
 
     nameInput.disabled = false;
@@ -1390,7 +1596,7 @@ guestInput.addEventListener(
 );
 
 
-// Jim Kontrollerar e-post när user skriver
+// Jim Kontrollerar e-post när användaren skriver
 
 emailInput.addEventListener(
     'input',
@@ -1420,7 +1626,7 @@ bookingForm.addEventListener(
     'submit',
     (e) => {
 
-        // Stoppar sidan från att laddas om
+        // Jim Stoppar sidan från att laddas om
 
         e.preventDefault();
 
@@ -1479,7 +1685,7 @@ resetButton.addEventListener(
 );
 
 
-// Jim Startar Spa sidan
+// Jim Startar Spa-sidan
 
 setMinimumDate();
 
