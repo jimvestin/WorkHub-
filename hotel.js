@@ -1,3 +1,29 @@
+const offers = [
+  {
+    id: "familjerum",
+    name: "Familj",
+    pricePerPerson: 1000,
+  },
+
+  {
+    id: "enkelrum",
+    name: "Enkel",
+    pricePerPerson: 500,
+  },
+
+  {
+    id: "executive",
+    name: "executive",
+    pricePerPerson: 800,
+  },
+
+  {
+    id: "presidentsvit",
+    name: "president",
+    pricePerPerson: 2000,
+  },
+];
+
 //knappen drar igång visaForm funktionen när den klickas på//
 function visaForm(button) {
 
@@ -28,3 +54,6 @@ function visaForm(button) {
         form.reset();
     }
 }
+
+
+
