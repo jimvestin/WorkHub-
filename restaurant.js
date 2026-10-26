@@ -27,6 +27,7 @@ const priceDisplay = document.getElementById("price");
 const form = document.getElementById("booking-form");
 const confirmation = document.getElementById("confirmation");
 const resetBtn = document.getElementById("reset-btn");
+const date = document.getElementById("date"); 
 
 // Sparar det valda erbjudandet
 let selectedOffer = null;
@@ -101,6 +102,7 @@ form.addEventListener("submit", (event) => {
     const name = document.getElementById("name").value.trim();
     const email = document.getElementById("email").value.trim();
     const amount = Number(quantity.value);
+    const bookingDate = date.value;
 
     // Kontrollerar namnet
     if (!name) {
@@ -115,6 +117,20 @@ form.addEventListener("submit", (event) => {
     if (!emailPattern.test(email)) {
         document.getElementById("email-error").textContent = "Ogiltig e-postadress";
         valid = false;
+    }
+    if (!bookingDate) {
+        document.getElementById("date-error").textContent = "Välj ett bokningsdatum";
+        valid = false;
+    } else {
+        // Kontrollera att datumet är giltigt
+        const selectedDate = new Date(bookingDate);
+        const today = new Date();
+        today.setHours(0, 0, 0, 0);
+
+        if (selectedDate < today) {
+            document.getElementById("date-error").textContent = "Välj ett giltligt datum";
+            valid = false;
+        }
     }
 
     // Kontrollerar att ett erbjudande har valts
@@ -144,6 +160,7 @@ form.addEventListener("submit", (event) => {
         <h3>Bokning mottagen</h3>
         <p>Namn: ${name}</p>
         <p>E-post: ${email}</p>
+        <p>Datum: ${bookingDate}</p>
         <p>Erbjudande: ${selectedOffer.name}</p>
         <p>Antal personer: ${amount}</p>
         <p>Totalpris: ${selectedOffer.price * amount} kr</p>
