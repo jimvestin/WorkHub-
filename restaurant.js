@@ -43,6 +43,7 @@ offers.forEach(offer => {
         <h3>${offer.name}</h3>
         <p>${offer.description}</p>
         <p>${offer.price} kr/person</p>
+        <span class="selected-text">Valt erbjudande</span>
     `;
 
     // Känner av när användaren klickar på ett erbjudande

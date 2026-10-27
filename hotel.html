@@ -1,0 +1,553 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+     <meta charset="UTF-8">
+     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/normalize/8.0.1/normalize.min.css">
+
+     <link rel="preconnect" href="https://fonts.googleapis.com">
+     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+
+     <link href="https://fonts.googleapis.com/css2?family=Lato:wght@300;400;700&family=Playfair+Display:wght@400;500;600;700&display=swap" rel="stylesheet">
+     <script src="hotel.js" defer></script>
+     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css">
+     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@12/swiper-bundle.min.css">
+     <link rel="stylesheet" href="hotel.css">
+     <script src="https://cdn.jsdelivr.net/npm/swiper@12/swiper-bundle.min.js" defer></script>
+     <script src="main.js" defer></script>
+     <title> - Hotell Workhub.</title>
+</head>
+
+<body>
+
+
+<!-- Jim Header / Navbar -->
+
+<header class="header">
+
+    <a href="index.html" class="logo">
+        WorkHub Hotel
+    </a>
+
+    <nav class="navbar">
+        <a href="index.html">Home</a>
+        <a href="spa.html">Spa</a>
+        <a href="restaurant.html">Restaurang</a>
+        <a href="conference.html">Konferens</a>
+    </nav>
+
+</header>
+<!-- Gökhan html start -->
+<section>
+ <div class="carousel swiper">
+    <div class="swiper-wrapper">
+        
+        <div class="card-list swiper-slide">
+            <div class="card-group"><img src="Pic/Hallsta_rum_juli2025-41familjerum-scaled.jpg" alt="" 
+             class="image">
+             <div class="card-info">
+                <h1 class="card-text">Rum för dig och hela din familj</h1>
+                <a href="hotel.html#familjerum" class="button-card">Boka familjerum <i class="fa-solid fa-arrow-right"></i></a>
+             </div>
+            </div>
+
+        </div>
+        <div class="card-list swiper-slide">
+            <div class="card-group"><img src="Pic/Single room.jpg" alt="" 
+             class="image">
+             <div class="card-info">
+                <h1 class="card-text">Om du vill ha en helg för dig själv</h1>
+                <a href="hotel.html#enkelrum" class="button-card">Boka enkelrum <i class="fa-solid fa-arrow-right"></i></a>
+             </div>
+            </div>
+        </div>
+        <div class="card-list swiper-slide">
+            <div class="card-group"><img src="Pic/marding6634-scaled.jpg" alt="" 
+             class="image">
+             <div class="card-info">
+                <h1 class="card-text">Bo någonstans på grund av jobb</h1>
+                <a href="hotel.html#executive" class="button-card">Boka executive-rum <i class="fa-solid fa-arrow-right"></i></a>
+             </div>
+            </div>
+        </div>
+        <div class="card-list swiper-slide">
+            <div class="card-group"><img src="Pic/prague-the-president-picture-1.jpg" alt="" 
+             class="image">
+             <div class="card-info">
+                <h1 class="card-text">Om du vill känna dig som president</h1>
+                <a href="hotel.html#presidentsvit" class="button-card">Boka presidentsvit <i class="fa-solid fa-arrow-right"></i></a>
+             </div>
+            </div>
+        </div>
+        </div>
+    
+    <div class="swiper-pagination"></div>
+    <div class="slider-button swiper-button-prev"></div>
+    <div class="slider-button swiper-button-next"></div>
+</div>
+</section>
+
+
+<main>
+
+    <section>
+        <div class="hotellet">
+            <h2 class="hotellinfo">Workhub hotell är en plats för alla</h2>
+            <p class="hotellinfo">Här hittar du fantastiska rum med topnotch service som du inte kan göra någon annanstans</p>
+        </div>
+      <div class="bilderalla" id="familjerum">
+        <div class="bilderfamilj">
+            <ul class="bilder">
+                <li class="bilderna">
+                    <div class="bild">
+                        <div class="bildfil">
+                            <img src="Pic/Hallsta_rum_juli2025-41familjerum-scaled.jpg" alt="">
+                            <div class="familjeinfo">
+                            <h1 class="familjerubrik">Familjerum</h1>
+                            <p class="familjetext">Här kan din familj koppla av med bättre än ditt egna hem. Så vad väntar du på. Skynda dig och boka och ha kul med familjen.</p>
+                            <!-- hit JS funktionen hittar till -->
+                            <button type="button" class="button-text" onclick="visaForm(this)">Boka familjerum <i class="fa-solid fa-arrow-right"></i></button>
+                            <!-- boknings formulär som är hidden -->
+                            <form class="bokning" hidden>
+
+                            <div class="formgrupp bokningsgrupp">
+
+                                <label for="bokningfran1">Bookning date from</label>
+                                <div class="input-error">
+                                <input type="date" id="bokningfran1" class="bokning-input datumFrom" required>
+                                <p class="invalidinput">Enter a valid date</p>
+                                </div>
+
+                                <label for="firstName1" class="">First Name</label>
+                                <div class="input-error">
+                                <input type="text" id="firstName1" class="bokning-input firstName" required>
+                                <p class="invalidinput">Enter a valid first name</p>
+                                </div>
+
+                                <label for="phone1" class="">Phone number</label>
+                                <div class="input-error">
+                                <input type="tel" id="phone1" class="bokning-input telePhone" required>
+                                <p class="invalidinput">Enter a valid phone number</p>
+                                </div>
+
+                                <label for="antalPersonerFamilj">How many are you (1-5):</label>
+                                <div class="input-error">
+                                <input
+                                 type="number"
+                                 id="antalPersonerFamilj"
+                                 name="antalPersoner"
+                                 class="bokning-input antalPersoner"
+                                 min="1"
+                                 max="5"
+                                 step="1"
+                                 value="1"
+                                 required
+                                 >
+                                 <p class="invalidinput">Enter a valid number</p>
+                                </div>                                
+
+                            </div>
+                                
+                            <div class="formgrupp2">
+
+                                <label for="bokningtill1">Bokning date til</label>
+                                <div class="input-error">
+                                   <input type="date" id="bokningtill1" class="bokning-input datumTill" required>
+                                   <p class="invalidinput">Enter valid booking date</p>
+                                </div>
+
+                                <label for="lastName1" class="">Last Name</label>
+                                <div class="input-error">
+                                   <input type="text" id="lastName1" class="bokning-input lastName" required>
+                                   <p class="invalidinput">Enter valid last name</p>
+                                </div>
+                               
+                                <label for="email1" class="">Email</label>
+                                <div class="input-error">
+                                   <input type="email" id="email1" class="bokning-input hotMail" required>
+                                   <p class="invalidinput">Enter valid mail</p> 
+                                </div>
+                                
+                                <label for="totalPris1">Totalt pris</label>
+                                <input
+                                type="text"
+                                id="totalPris1"
+                                class="totalPris"
+                                value="1 000 kr"
+                                readonly
+                                >
+                           
+                            </div>
+                                
+                                <button type="button" class="bekraftaBokning">Bekräfta bokning</button>
+                                <button type="button" class="borjaom">Börja om</button>
+
+                            </form>
+                            </div>
+                        </div>
+                    </div>
+                </li>
+            </ul>
+        </div>
+        <div class="bilderfamilj" id="enkelrum">
+            <ul class="bilder2">
+                <li class="bilderna">
+                    <div class="bild">
+                        <div class="bildfil">
+                            <img src="Pic/Single room.jpg" alt="">
+                            <div class="familjeinfo">
+                            <h1 class="familjerubrik">Enkelrum</h1>
+                            <p class="familjetext">Om du vill vara själv med tänkadet och uppnå nirvana, då är du på rätt plats. Så kom hit och börja tänka helt enkelt.</p>
+                            <!-- hit JS funktionen hittar till -->
+                            <button type="button" class="button-text" onclick="visaForm(this)">Boka enkelrum <i class="fa-solid fa-arrow-right"></i></button>
+                             <!-- boknings formulär som är hidden -->   
+                            <form class="bokning" hidden>
+
+                            <div class="formgrupp bokningsgrupp">
+
+                                <label for="bokningfran2">Bookning date from</label>
+                                <div class="input-error">
+                                <input type="date" id="bokningfran2" class="bokning-input datumFrom" required>
+                                <p class="invalidinput">Enter a valid date</p>
+                                </div>
+
+                                <label for="firstName2" class="">First Name</label>
+                                <div class="input-error">
+                                <input type="text" id="firstName2" class="bokning-input firstName" required>
+                                <p class="invalidinput">Enter a valid first name</p>
+                                </div>
+
+                                <label for="phone2" class="">Phone number</label>
+                                <div class="input-error">
+                                <input type="tel" id="phone2" class="bokning-input telePhone" required>
+                                <p class="invalidinput">Enter a valid phone number</p>
+                                </div>
+
+                                <label for="antalPersonerEnkel">How many are you (1-5):</label>
+                                <div class="input-error">
+                                <input
+                                 type="number"
+                                 id="antalPersonerEnkel"
+                                 name="antalPersoner"
+                                 class="bokning-input antalPersoner"
+                                 min="1"
+                                 max="5"
+                                 step="1"
+                                 value="1"
+                                 required
+                                 >
+                                 <p class="invalidinput">Enter a valid number</p>
+                                </div>                                
+
+                            </div>
+                                
+                            <div class="formgrupp2">
+
+                                <label for="bokningtill2">Bokning date til</label>
+                                <div class="input-error">
+                                   <input type="date" id="bokningtill2" class="bokning-input datumTill" required>
+                                   <p class="invalidinput">Enter valid booking date</p>
+                                </div>
+
+                                <label for="lastName2" class="">Last Name</label>
+                                <div class="input-error">
+                                   <input type="text" id="lastName2" class="bokning-input lastName" required>
+                                   <p class="invalidinput">Enter valid last name</p>
+                                </div>
+                               
+                                <label for="email2" class="">Email</label>
+                                <div class="input-error">
+                                   <input type="email" id="email2" class="bokning-input hotMail" required>
+                                   <p class="invalidinput">Enter valid mail</p> 
+                                </div>
+                                
+                                <label for="totalPris2">Totalt pris</label>
+                                <input
+                                type="text"
+                                id="totalPris2"
+                                class="totalPris"
+                                value="500 kr"
+                                readonly
+                                >
+                           
+                            </div>
+                                
+                                <button type="button" class="bekraftaBokning">Bekräfta bokning</button>
+                                <button type="button" class="borjaom">Börja om</button>
+
+                            </form>
+                            </div>
+                        </div>
+                    </div>
+                </li>
+            </ul>
+        </div>
+        <div class="bilderfamilj" id="executive">
+            <ul class="bilder">
+                <li class="bilderna">
+                    <div class="bild">
+                        <div class="bildfil">
+                            <img src="Pic/marding6634-scaled.jpg" alt="">
+                             <div class="familjeinfo">
+                            <h1 class="familjerubrik">Executive</h1>
+                            <p class="familjetext">Finns ingen bättre arbetsmiljö än vårt executive-rum. Fram med ditt material och börja arbeta. Du kommer få så många ideer här.</p>
+                            <!-- hit JS funktionen hittar till -->
+                            <button type="button" class="button-text" onclick="visaForm(this)">Boka executive-rum <i class="fa-solid fa-arrow-right"></i></button>
+                             <!-- boknings formulär som är hidden -->  
+                            <form class="bokning" hidden>
+
+                            <div class="formgrupp bokningsgrupp">
+
+                                <label for="bokningfran3">Bookning date from</label>
+                                <div class="input-error">
+                                <input type="date" id="bokningfran3" class="bokning-input datumFrom" required>
+                                <p class="invalidinput">Enter a valid date</p>
+                                </div>
+
+                                <label for="firstName3" class="">First Name</label>
+                                <div class="input-error">
+                                <input type="text" id="firstName3" class="bokning-input firstName" required>
+                                <p class="invalidinput">Enter a valid first name</p>
+                                </div>
+
+                                <label for="phone3" class="">Phone number</label>
+                                <div class="input-error">
+                                <input type="tel" id="phone3" class="bokning-input telePhone" required>
+                                <p class="invalidinput">Enter a valid phone number</p>
+                                </div>
+
+                                <label for="antalPersonerExecutive">How many are you (1-5):</label>
+                                <div class="input-error">
+                                <input
+                                 type="number"
+                                 id="antalPersonerExecutive"
+                                 name="antalPersoner"
+                                 class="bokning-input antalPersoner"
+                                 min="1"
+                                 max="5"
+                                 step="1"
+                                 value="1"
+                                 required
+                                 >
+                                 <p class="invalidinput">Enter a valid number</p>
+                                </div>                                
+
+                            </div>
+                                
+                            <div class="formgrupp2">
+
+                                <label for="bokningtill3">Bokning date til</label>
+                                <div class="input-error">
+                                   <input type="date" id="bokningtill3" class="bokning-input datumTill" required>
+                                   <p class="invalidinput">Enter valid booking date</p>
+                                </div>
+
+                                <label for="lastName3" class="">Last Name</label>
+                                <div class="input-error">
+                                   <input type="text" id="lastName3" class="bokning-input lastName" required>
+                                   <p class="invalidinput">Enter valid last name</p>
+                                </div>
+                               
+                                <label for="email3" class="">Email</label>
+                                <div class="input-error">
+                                   <input type="email" id="email3" class="bokning-input hotMail" required>
+                                   <p class="invalidinput">Enter valid mail</p> 
+                                </div>
+                                
+                                <label for="totalPris3">Totalt pris</label>
+                                <input
+                                type="text"
+                                id="totalPris3"
+                                class="totalPris"
+                                value="800 kr"
+                                readonly
+                                >
+                           
+                            </div>
+                                
+                                <button type="button" class="bekraftaBokning">Bekräfta bokning</button>
+                                <button type="button" class="borjaom">Börja om</button>
+
+                            </form>
+                            </div>
+                        </div>
+                    </div>
+                </li>
+            </ul>
+        </div>
+        <div class="bilderfamilj" id="presidentsvit">
+            <ul class="bilder2">
+                <li class="bilderna">
+                    <div class="bild">
+                        <div class="bildfil">
+                            <img src="Pic/prague-the-president-picture-1.jpg" alt="">
+                            <div class="familjeinfo">
+                            <h1 class="familjerubrik">Presidentsvit</h1>
+                            <p class="familjetext">För personen som vill vara Donald Trump. Inget jag rekommenderar. Bättre att vara en normal person istället. </p>
+                            <!-- hit JS funktionen hittar till -->
+                            <button type="button" class="button-text" onclick="visaForm(this)">Boka presidentsvit <i class="fa-solid fa-arrow-right"></i></button>
+                            <!-- boknings formulär som är hidden -->
+                            <form class="bokning" hidden>
+
+                            <div class="formgrupp bokningsgrupp">
+
+                                <label for="bokningfran4">Bookning date from</label>
+                                <div class="input-error">
+                                <input type="date" id="bokningfran4" class="bokning-input datumFrom" required>
+                                <p class="invalidinput">Enter a valid date</p>
+                                </div>
+
+                                <label for="firstName4" class="">First Name</label>
+                                <div class="input-error">
+                                <input type="text" id="firstName4" class="bokning-input firstName" required>
+                                <p class="invalidinput">Enter a valid first name</p>
+                                </div>
+
+                                <label for="phone4" class="">Phone number</label>
+                                <div class="input-error">
+                                <input type="tel" id="phone4" class="bokning-input telePhone" required>
+                                <p class="invalidinput">Enter a valid phone number</p>
+                                </div>
+
+                                <label for="antalPersonerPresident">How many are you (1-5):</label>
+                                <div class="input-error">
+                                <input
+                                 type="number"
+                                 id="antalPersonerPresident"
+                                 name="antalPersoner"
+                                 class="bokning-input antalPersoner"
+                                 min="1"
+                                 max="5"
+                                 step="1"
+                                 value="1"
+                                 required
+                                 >
+                                 <p class="invalidinput">Enter a valid number</p>
+                                </div>                                
+
+                            </div>
+                                
+                            <div class="formgrupp2">
+
+                                <label for="bokningtill4">Bokning date til</label>
+                                <div class="input-error">
+                                   <input type="date" id="bokningtill4" class="bokning-input datumTill" required>
+                                   <p class="invalidinput">Enter valid booking date</p>
+                                </div>
+
+                                <label for="lastName4" class="">Last Name</label>
+                                <div class="input-error">
+                                   <input type="text" id="lastName4" class="bokning-input lastName" required>
+                                   <p class="invalidinput">Enter valid last name</p>
+                                </div>
+                               
+                                <label for="email4" class="">Email</label>
+                                <div class="input-error">
+                                   <input type="email" id="email4" class="bokning-input hotMail" required>
+                                   <p class="invalidinput">Enter valid mail</p> 
+                                </div>
+                                
+                                <label for="totalPris4">Totalt pris</label>
+                                <input
+                                type="text"
+                                id="totalPris4"
+                                class="totalPris"
+                                value="2 000 kr"
+                                readonly
+                                >
+                           
+                            </div>
+                                
+                                <button type="button" class="bekraftaBokning">Bekräfta bokning</button>
+                                <button type="button" class="borjaom">Börja om</button>
+
+                            </form>
+
+                            </div>
+                        </div>
+                    </div>
+                </li>
+            </ul>
+        </div>
+      </div>
+    </section>
+
+</main>
+
+<!-- Gökhan html slut -->
+<!-- Alex Footer -->
+
+<footer class="footer">
+
+
+    <!-- All info på vänster sida -->
+
+    <div class="footer-info">
+
+        <div>
+
+            <h3>Postadress</h3>
+
+            <p>
+                Tjotahejti 32
+                <br>
+                123 45
+                <br>
+                Långt bort
+            </p>
+
+        </div>
+
+
+        <div>
+
+            <h3>Kontakt hotell</h3>
+
+            <p>
+                Telefon: 123 456 78
+                <br>
+                E-post: Hotell@Workhub.com
+            </p>
+
+        </div>
+
+
+        <div>
+
+            <h3>Kontakt konferens</h3>
+
+            <p>
+                Telefon: 876 543 21
+                <br>
+                E-post: Konferens@Workhub.com
+            </p>
+
+        </div>
+
+    </div>
+
+
+    <!-- All info på höger sida -->
+
+    <div class="footer-links">
+
+        <h3>Sociala medier</h3>
+
+        <a href="https://www.instagram.com/" target="_blank">
+            Instagram
+        </a>
+
+        <a href="https://www.facebook.com/" target="_blank">
+            Facebook
+        </a>
+
+    </div>
+
+</footer>
+
+
+</body>
+
+</html>
