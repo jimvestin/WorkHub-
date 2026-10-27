@@ -17,20 +17,52 @@
      <link rel="stylesheet" href="conference.css">
      <script src="https://cdn.jsdelivr.net/npm/swiper@12/swiper-bundle.min.js" defer></script>
      <script src="conference.js" defer></script>
-     <title> - Hotell Workhub Konferens.</title>
+     <title> Hotell Workhub Konferens.</title>
 </head>
 <body> 
-<h1> Här bokar du din konferens</h1>
+<header class="header">
+    <a href="index.html" class="logo">
+        WorkHub Hotel
+    </a>
+    <nav class="navbar">
+        <a href="index.html">Hem</a>
+        <a href="hotel.html">Hotell</a>
+        <a href="spa.html">Spa</a>
+        <a href="restaurant.html">Restaurang</a>
+    </nav>
+</header>
 
-<div class="container">
-  <div id="offers">
-     <!-- JavaScript lägger in erbjudandena här  -->
+<!-- Sidan delas upp i 4 block 2 colm x 2 rows -->
+<div class = "page-grid">
 
+  <!-- Block 1  uppe till vänster OFFERS -->
+   <Section class = "block offers-block">
+  <div id = "offers">
+    <h2> Välj ett alternativ och fyll sen i dina uppgifter </h2>
+     <!-- Skapas via Javascript  -->
+  </div>
+</Section>
 
+<!-- Block 2 uppe till höger BILD -->
+<div class="panel">
+   <img src="Pic/FZ2A9807-HDR.jpg" alt="konferenslokal" class="panel-image" >
 </div>
 
+<!-- Block 3 nere till vänster BILD -->
+<div class="panel">
+   <img src="Pic/Meeting.jfif" alt="konferenslokal" class="panel-image" >
+</div>
+
+
+<!-- Block 4 nere till höger FORMS -->
+  <div id="bookingSection" class="block booking-block">
+
 <!-- Bokningsformulär -->
-<div class="form-field" id="bookingForm">
+<!-- novalidate stänger av webbläsarens egen validering -->
+<form id="bookingForm" novalidate>
+  <h2> Dina uppgifter</h2>
+
+   <p id="offerError"></p>
 
   <label for="company">Företag:</label>
   <input type="text" id="company">
@@ -41,7 +73,7 @@
   <p id="contactPersonError"></p>
 
   <label for="email">E-postadress:</label>
-  <input type="text" id="email">
+  <input type="text" id="email" inputmode="email">
   <p id="emailError"></p>
 
   <label for="phone">Telefon:</label>
@@ -49,30 +81,103 @@
   <p id="phoneError"></p>
 
   <label for="date">Bokningsdatum:</label>
-  <input type="date" id="date">
+  <input type="date" id="date" min="">
   <p id="dateError"></p>
   
-  <button type="button" id="submitBooking">
-  Bekräfta bokning
-</button>
-</div>
  <!-- Antal timmar -->
   <div class="quantity">
     <label for="quantity">Antal timmar (1-5):</label>
-    <input
-      type="number"
-      id="quantity"
-      min="1"
-      max="5"
-      step="1"
-      value=""
-    >
+    <input type = number id="quantity" min="1" max="5" step="1" value ="1" required>
+    <p id="quantityError"> </p>
   </div>
 
-  <p id="totalPrice">Totalkostand 0 kr</p>
 
+  <!-- Fylls i via javascript -->
+  <p id="totalPrice"></p>
+
+  <!-- Använder button och inte submit för att det ska styras via JS -->
+ <button type="button" id="submitBooking">
+  Bekräfta bokning
+</button>
+<button type="button" id="resetBooking"> 
+  Börja om</button>
+</form>
+<!-- Bekräftelse är dold från start JS fyller i och tar bort hidden -->
+<section id="confirmation" hidden>
+  <div id="confirmationInfo"></div>
+</div>
 
 </div>
+<footer class="footer">
+
+
+    <!-- All info på vänster sida -->
+
+    <div class="footer-info">
+
+        <div>
+
+            <h3>Postadress</h3>
+
+            <p>
+                Tjotahejti 32
+                <br>
+                123 45
+                <br>
+                Långt bort
+            </p>
+
+        </div>
+
+
+        <div>
+
+            <h3>Kontakt hotell</h3>
+
+            <p>
+                Telefon: 123 456 78
+                <br>
+                E-post: Hotell@Workhub.com
+            </p>
+
+        </div>
+
+
+        <div>
+
+            <h3>Kontakt konferens</h3>
+
+            <p>
+                Telefon: 876 543 21
+                <br>
+                E-post: Konferens@Workhub.com
+            </p>
+
+        </div>
+
+    </div>
+
+
+    <!-- All info på höger sida -->
+
+    <div class="footer-links">
+
+        <h3>Sociala medier</h3>
+
+        <a href="https://www.instagram.com/" target="_blank">
+            Instagram
+        </a>
+
+        <a href="https://www.facebook.com/" target="_blank">
+            Facebook
+        </a>
+
+    </div>
+
+</footer>
 </body>
+
+</html>
+
 
 
