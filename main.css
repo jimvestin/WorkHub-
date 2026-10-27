@@ -306,6 +306,10 @@ h3 {
 
 .footer {
     background-color: var(--green);
+    display: flex;
+    justify-content: space-between;
+    padding: 40px;
+    font-size: 14px;
 
 .button-card { 
     transform: translateY(200px); 
