@@ -6,7 +6,7 @@ Examination i JavaScript
 - **Jim:** Spa och Header/Navbar
 - **Gökhan:**
 - **Alex:**
-- **Markus:**
+- **Markus:** Restaurant och Selections
 
 ## Gemensam design
 

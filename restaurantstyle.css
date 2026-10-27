@@ -126,22 +126,34 @@ h3 {
 
 }
 
-
+.offer-card .selected-text {
+  display: none; 
+}
 .offer-card{
+    position: relative;
     border:1px solid #000;
     padding:1rem;
     margin-bottom:1rem;
     cursor:pointer;   
-    border-radius: 10px;
-    
+    border-radius: 10px;    
+}
+.offer-card.selected .selected-text {
+    display: block;
+    position: absolute;
+    bottom: 15px;
+    right: 15px;  
+    color: green;
+    padding: 4px 10px;
+    font-size: 1rem;
+    border-radius: 4px;
+    font-weight: bold;
 }
 .offers{    
     display: flex;
     width: 100%;
     }
     #offers-container, .Picoffers{
-        flex: 1;
-        
+        flex: 1;        
     } 
     .offers-form{
         display: flex;
@@ -149,8 +161,7 @@ h3 {
         justify-content: center;
         align-items: center;
         padding: 2rem;
-        box-sizing: border-box;
-        
+        box-sizing: border-box;        
     }
     .Picoffers img {
         width: 100%;
@@ -159,8 +170,6 @@ h3 {
         align-items: center;
         object-fit: cover;
     }
-
-
 .selected{
     border:3px solid green;
 }
