@@ -171,13 +171,23 @@ function updateTotal(form, selectedOffer) {
     const totalPriceElement = form.querySelector(".totalPris");
 
     const antal = Number(antalPersoner.value);
-
+    if (
+    antalPersoner.value.trim() === "" ||
+    !Number.isInteger(antal) ||
+    antal < 1 ||
+    antal > 5
+) {
+    totalPriceElement.value = "Antal måste vara 1-5";
+    totalPriceElement.style.color = "red";
+    return;
+}
     const totalPrice = calculateTotal(
         selectedOffer.pricePerPerson,
         antal
     );
     
     totalPriceElement.value = `${totalPrice.toLocaleString("sv-SE")} kr`;
+    totalPriceElement.style.color = "";
 }
 
 //knappen drar igång visaForm funktionen när den klickas på//
@@ -252,32 +262,47 @@ document.querySelectorAll(".bokning").forEach(form => {
 
     button.addEventListener("click", function () {
 
+        //kollar så att värderna är korrekta//
         const isValid = validateUser(form);
 
-        if (isValid) {
-
-            const firstName = form.querySelector(".firstName").value.trim();
-            const lastName = form.querySelector(".lastName").value.trim();
-            const phone = form.querySelector(".telePhone").value.trim();
-            const email = form.querySelector(".hotMail").value.trim();
-            const antalPersoner = form.querySelector(".antalPersoner").value;
-            const totalPris = form.querySelector(".totalPris").value;
-            const dateFrom = form.querySelector(".datumFrom").value;
-            const dateTo = form.querySelector(".datumTill").value;
-            //alert rutan som poppar upp när allt är korrekt som visar informationen//
-            alert(
-                "Bokningsinformation\n\n" +
-                "First name: " + firstName + "\n" +
-                "Last name: " + lastName + "\n\n" +
-                "Phone number: " + phone + "\n" +
-                "Email: " + email + "\n\n" +
-                "How many: " + antalPersoner + "\n" +
-                "Total price: " + totalPris + "\n\n" +
-                "Date from: " + dateFrom + "\n" +
-                "Date to: " + dateTo
-            );
-
+        if (!isValid) {
+            return;
         }
+
+        //hittar bokningsuppgifterna//
+        const firstName = form.querySelector(".firstName").value.trim();
+        const lastName = form.querySelector(".lastName").value.trim();
+        const phone = form.querySelector(".telePhone").value.trim();
+        const email = form.querySelector(".hotMail").value.trim();
+        const antalPersoner = form.querySelector(".antalPersoner").value;
+        const totalPris = form.querySelector(".totalPris").value;
+        const dateFrom = form.querySelector(".datumFrom").value;
+        const dateTo = form.querySelector(".datumTill").value;
+
+        //hittar bekräftelseavsnittet//
+        const confirmation = form.querySelector(".bokningsbekraftelse");
+ 
+
+        //visar bokningsuppgifterna//
+        confirmation.querySelector(".bekraftelseNamn").textContent = `${firstName} ${lastName}`;
+        confirmation.querySelector(".bekraftelseTelefon").textContent = phone;
+        confirmation.querySelector(".bekraftelseEmail").textContent = email;
+        confirmation.querySelector(".bekraftelseAntal").textContent = antalPersoner;
+        confirmation.querySelector(".bekraftelsePris").textContent = totalPris;
+        confirmation.querySelector(".bekraftelseFran").textContent = dateFrom;
+        confirmation.querySelector(".bekraftelseTill").textContent = dateTo;
+
+        //döljer inmatningsfälten och bekräftelseknappen//
+        form.querySelectorAll(
+            ".formgrupp, .formgrupp2, .bekraftaBokning"
+        ).forEach(element => {
+            element.hidden = true;
+        });
+         
+        form.closest(".familjeinfo").querySelector(".button-text").hidden = true;
+        
+        //visar bokningsbekräftelsen//
+        confirmation.hidden = false;
     });
 });
 
@@ -332,6 +357,16 @@ document.querySelectorAll(".bokning").forEach(form => {
 
         if (selectedOffer) {
             updateTotal(form, selectedOffer);
+            
+            const confirmation = form.querySelector(".bokningsbekraftelse");
+            confirmation.hidden = true;
+            form.closest(".familjeinfo").querySelector(".button-text").hidden = false;
+
+            form.querySelectorAll(
+                ".formgrupp, .formgrupp2, .bekraftaBokning"
+            ).forEach(element => {
+                element.hidden = false;
+            });
         }
     });
 });
