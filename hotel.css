@@ -103,7 +103,7 @@ h3 {
 
 }
 
-/* Gökhan Carousel */
+/* Gökhan css start Carousel */
 
 .carousel { 
     width: 100%; 
@@ -321,7 +321,7 @@ h3 {
 }
 
 .invalidinput {
-    visibility: hidden;
+    display: none;
     margin: 0;
     height: 0;
     font-size: 12px;
@@ -333,6 +333,10 @@ h3 {
     .bokning-input {
         border: 1px solid;
         border-color: red;
+    }
+
+    .invalidinput {
+        display: block;
     }
 }
 
@@ -349,6 +353,7 @@ h3 {
     opacity: 0.5;
 }
 
+/* Gökhan css slut */
 /* Alex Footer */
 
 .footer {

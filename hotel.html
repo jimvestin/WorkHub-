@@ -11,7 +11,7 @@
      <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 
      <link href="https://fonts.googleapis.com/css2?family=Lato:wght@300;400;700&family=Playfair+Display:wght@400;500;600;700&display=swap" rel="stylesheet">
-     <script src="hotel.js"></script>
+     <script src="hotel.js" defer></script>
      <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css">
      <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@12/swiper-bundle.min.css">
      <link rel="stylesheet" href="hotel.css">
@@ -39,7 +39,7 @@
     </nav>
 
 </header>
-
+<!-- Gökhan html start -->
 <section>
  <div class="carousel swiper">
     <div class="swiper-wrapper">
@@ -112,33 +112,33 @@
                             <!-- boknings formulär som är hidden -->
                             <form class="bokning" hidden>
 
-                            <div class="formgrupp" id="bokningsgrupp">
+                            <div class="formgrupp bokningsgrupp">
 
-                                <label for="bokningfran">Bookning date from</label>
+                                <label for="bokningfran1">Bookning date from</label>
                                 <div class="input-error">
-                                <input type="date" id="bokningfran" class="bokning-input">
+                                <input type="date" id="bokningfran1" class="bokning-input datumFrom" required>
                                 <p class="invalidinput">Enter a valid date</p>
                                 </div>
 
-                                <label for="firstName" class="">First Name</label>
+                                <label for="firstName1" class="">First Name</label>
                                 <div class="input-error">
-                                <input type="text" id="firstName" class="bokning-input">
+                                <input type="text" id="firstName1" class="bokning-input firstName" required>
                                 <p class="invalidinput">Enter a valid first name</p>
                                 </div>
 
-                                <label for="phone" class="">Phone number</label>
+                                <label for="phone1" class="">Phone number</label>
                                 <div class="input-error">
-                                <input type="tel" id="phone" class="bokning-input" required>
+                                <input type="tel" id="phone1" class="bokning-input telePhone" required>
                                 <p class="invalidinput">Enter a valid phone number</p>
                                 </div>
 
-                                <label for="antalPersoner">How many are you (1-5):</label>
+                                <label for="antalPersonerFamilj">How many are you (1-5):</label>
                                 <div class="input-error">
                                 <input
                                  type="number"
-                                 id="antalPersoner"
+                                 id="antalPersonerFamilj"
                                  name="antalPersoner"
-                                 class="bokning-input"
+                                 class="bokning-input antalPersoner"
                                  min="1"
                                  max="5"
                                  step="1"
@@ -152,27 +152,28 @@
                                 
                             <div class="formgrupp2">
 
-                                <label for="bokningtill">Bokning date til</label>
+                                <label for="bokningtill1">Bokning date til</label>
                                 <div class="input-error">
-                                   <input type="date" id="bokningtill" class="bokning-input">
+                                   <input type="date" id="bokningtill1" class="bokning-input datumTill" required>
                                    <p class="invalidinput">Enter valid booking date</p>
                                 </div>
 
-                                <label for="lastName" class="">Last Name</label>
+                                <label for="lastName1" class="">Last Name</label>
                                 <div class="input-error">
-                                   <input type="text" id="lastName" class="bokning-input">
+                                   <input type="text" id="lastName1" class="bokning-input lastName" required>
                                    <p class="invalidinput">Enter valid last name</p>
                                 </div>
                                
-                                <label for="email" class="">Email</label>
+                                <label for="email1" class="">Email</label>
                                 <div class="input-error">
-                                   <input type="email" id="email" class="bokning-input" required>
+                                   <input type="email" id="email1" class="bokning-input hotMail" required>
                                    <p class="invalidinput">Enter valid mail</p> 
                                 </div>
                                 
-                                <label>Totalt pris</label>
+                                <label for="totalPris1">Totalt pris</label>
                                 <input
                                 type="text"
+                                id="totalPris1"
                                 class="totalPris"
                                 value="1 000 kr"
                                 readonly
@@ -180,7 +181,8 @@
                            
                             </div>
                                 
-                                <button type="button" id="bekräftaBokning">Bekräfta bokning</button>
+                                <button type="button" class="bekraftaBokning">Bekräfta bokning</button>
+                                <button type="button" class="borjaom">Börja om</button>
 
                             </form>
                             </div>
@@ -203,33 +205,33 @@
                              <!-- boknings formulär som är hidden -->   
                             <form class="bokning" hidden>
 
-                            <div class="formgrupp" id="bokningsgrupp">
+                            <div class="formgrupp bokningsgrupp">
 
-                                <label for="bokningfran">Bookning date from</label>
+                                <label for="bokningfran2">Bookning date from</label>
                                 <div class="input-error">
-                                <input type="date" id="bokningfran" class="bokning-input">
+                                <input type="date" id="bokningfran2" class="bokning-input datumFrom" required>
                                 <p class="invalidinput">Enter a valid date</p>
                                 </div>
 
-                                <label for="firstName" class="">First Name</label>
+                                <label for="firstName2" class="">First Name</label>
                                 <div class="input-error">
-                                <input type="text" id="firstName" class="bokning-input">
+                                <input type="text" id="firstName2" class="bokning-input firstName" required>
                                 <p class="invalidinput">Enter a valid first name</p>
                                 </div>
 
-                                <label for="phone" class="">Phone number</label>
+                                <label for="phone2" class="">Phone number</label>
                                 <div class="input-error">
-                                <input type="tel" id="phone" class="bokning-input" required>
+                                <input type="tel" id="phone2" class="bokning-input telePhone" required>
                                 <p class="invalidinput">Enter a valid phone number</p>
                                 </div>
 
-                                <label for="antalPersoner">How many are you (1-5):</label>
+                                <label for="antalPersonerEnkel">How many are you (1-5):</label>
                                 <div class="input-error">
                                 <input
                                  type="number"
-                                 id="antalPersoner"
+                                 id="antalPersonerEnkel"
                                  name="antalPersoner"
-                                 class="bokning-input"
+                                 class="bokning-input antalPersoner"
                                  min="1"
                                  max="5"
                                  step="1"
@@ -243,27 +245,28 @@
                                 
                             <div class="formgrupp2">
 
-                                <label for="bokningtill">Bokning date til</label>
+                                <label for="bokningtill2">Bokning date til</label>
                                 <div class="input-error">
-                                   <input type="date" id="bokningtill" class="bokning-input">
+                                   <input type="date" id="bokningtill2" class="bokning-input datumTill" required>
                                    <p class="invalidinput">Enter valid booking date</p>
                                 </div>
 
-                                <label for="lastName" class="">Last Name</label>
+                                <label for="lastName2" class="">Last Name</label>
                                 <div class="input-error">
-                                   <input type="text" id="lastName" class="bokning-input">
+                                   <input type="text" id="lastName2" class="bokning-input lastName" required>
                                    <p class="invalidinput">Enter valid last name</p>
                                 </div>
                                
-                                <label for="email" class="">Email</label>
+                                <label for="email2" class="">Email</label>
                                 <div class="input-error">
-                                   <input type="email" id="email" class="bokning-input" required>
+                                   <input type="email" id="email2" class="bokning-input hotMail" required>
                                    <p class="invalidinput">Enter valid mail</p> 
                                 </div>
                                 
-                                <label>Totalt pris</label>
+                                <label for="totalPris2">Totalt pris</label>
                                 <input
                                 type="text"
+                                id="totalPris2"
                                 class="totalPris"
                                 value="500 kr"
                                 readonly
@@ -271,7 +274,8 @@
                            
                             </div>
                                 
-                                <button type="button" id="bekräftaBokning">Bekräfta bokning</button>
+                                <button type="button" class="bekraftaBokning">Bekräfta bokning</button>
+                                <button type="button" class="borjaom">Börja om</button>
 
                             </form>
                             </div>
@@ -294,33 +298,33 @@
                              <!-- boknings formulär som är hidden -->  
                             <form class="bokning" hidden>
 
-                            <div class="formgrupp" id="bokningsgrupp">
+                            <div class="formgrupp bokningsgrupp">
 
-                                <label for="bokningfran">Bookning date from</label>
+                                <label for="bokningfran3">Bookning date from</label>
                                 <div class="input-error">
-                                <input type="date" id="bokningfran" class="bokning-input">
+                                <input type="date" id="bokningfran3" class="bokning-input datumFrom" required>
                                 <p class="invalidinput">Enter a valid date</p>
                                 </div>
 
-                                <label for="firstName" class="">First Name</label>
+                                <label for="firstName3" class="">First Name</label>
                                 <div class="input-error">
-                                <input type="text" id="firstName" class="bokning-input">
+                                <input type="text" id="firstName3" class="bokning-input firstName" required>
                                 <p class="invalidinput">Enter a valid first name</p>
                                 </div>
 
-                                <label for="phone" class="">Phone number</label>
+                                <label for="phone3" class="">Phone number</label>
                                 <div class="input-error">
-                                <input type="tel" id="phone" class="bokning-input" required>
+                                <input type="tel" id="phone3" class="bokning-input telePhone" required>
                                 <p class="invalidinput">Enter a valid phone number</p>
                                 </div>
 
-                                <label for="antalPersoner">How many are you (1-5):</label>
+                                <label for="antalPersonerExecutive">How many are you (1-5):</label>
                                 <div class="input-error">
                                 <input
                                  type="number"
-                                 id="antalPersoner"
+                                 id="antalPersonerExecutive"
                                  name="antalPersoner"
-                                 class="bokning-input"
+                                 class="bokning-input antalPersoner"
                                  min="1"
                                  max="5"
                                  step="1"
@@ -334,27 +338,28 @@
                                 
                             <div class="formgrupp2">
 
-                                <label for="bokningtill">Bokning date til</label>
+                                <label for="bokningtill3">Bokning date til</label>
                                 <div class="input-error">
-                                   <input type="date" id="bokningtill" class="bokning-input">
+                                   <input type="date" id="bokningtill3" class="bokning-input datumTill" required>
                                    <p class="invalidinput">Enter valid booking date</p>
                                 </div>
 
-                                <label for="lastName" class="">Last Name</label>
+                                <label for="lastName3" class="">Last Name</label>
                                 <div class="input-error">
-                                   <input type="text" id="lastName" class="bokning-input">
+                                   <input type="text" id="lastName3" class="bokning-input lastName" required>
                                    <p class="invalidinput">Enter valid last name</p>
                                 </div>
                                
-                                <label for="email" class="">Email</label>
+                                <label for="email3" class="">Email</label>
                                 <div class="input-error">
-                                   <input type="email" id="email" class="bokning-input" required>
+                                   <input type="email" id="email3" class="bokning-input hotMail" required>
                                    <p class="invalidinput">Enter valid mail</p> 
                                 </div>
                                 
-                                <label>Totalt pris</label>
+                                <label for="totalPris3">Totalt pris</label>
                                 <input
                                 type="text"
+                                id="totalPris3"
                                 class="totalPris"
                                 value="800 kr"
                                 readonly
@@ -362,7 +367,8 @@
                            
                             </div>
                                 
-                                <button type="button" id="bekräftaBokning">Bekräfta bokning</button>
+                                <button type="button" class="bekraftaBokning">Bekräfta bokning</button>
+                                <button type="button" class="borjaom">Börja om</button>
 
                             </form>
                             </div>
@@ -385,33 +391,33 @@
                             <!-- boknings formulär som är hidden -->
                             <form class="bokning" hidden>
 
-                            <div class="formgrupp" id="bokningsgrupp">
+                            <div class="formgrupp bokningsgrupp">
 
-                                <label for="bokningfran">Bookning date from</label>
+                                <label for="bokningfran4">Bookning date from</label>
                                 <div class="input-error">
-                                <input type="date" id="bokningfran" class="bokning-input">
+                                <input type="date" id="bokningfran4" class="bokning-input datumFrom" required>
                                 <p class="invalidinput">Enter a valid date</p>
                                 </div>
 
-                                <label for="firstName" class="">First Name</label>
+                                <label for="firstName4" class="">First Name</label>
                                 <div class="input-error">
-                                <input type="text" id="firstName" class="bokning-input">
+                                <input type="text" id="firstName4" class="bokning-input firstName" required>
                                 <p class="invalidinput">Enter a valid first name</p>
                                 </div>
 
-                                <label for="phone" class="">Phone number</label>
+                                <label for="phone4" class="">Phone number</label>
                                 <div class="input-error">
-                                <input type="tel" id="phone" class="bokning-input" required>
+                                <input type="tel" id="phone4" class="bokning-input telePhone" required>
                                 <p class="invalidinput">Enter a valid phone number</p>
                                 </div>
 
-                                <label for="antalPersoner">How many are you (1-5):</label>
+                                <label for="antalPersonerPresident">How many are you (1-5):</label>
                                 <div class="input-error">
                                 <input
                                  type="number"
-                                 id="antalPersoner"
+                                 id="antalPersonerPresident"
                                  name="antalPersoner"
-                                 class="bokning-input"
+                                 class="bokning-input antalPersoner"
                                  min="1"
                                  max="5"
                                  step="1"
@@ -425,27 +431,28 @@
                                 
                             <div class="formgrupp2">
 
-                                <label for="bokningtill">Bokning date til</label>
+                                <label for="bokningtill4">Bokning date til</label>
                                 <div class="input-error">
-                                   <input type="date" id="bokningtill" class="bokning-input">
+                                   <input type="date" id="bokningtill4" class="bokning-input datumTill" required>
                                    <p class="invalidinput">Enter valid booking date</p>
                                 </div>
 
-                                <label for="lastName" class="">Last Name</label>
+                                <label for="lastName4" class="">Last Name</label>
                                 <div class="input-error">
-                                   <input type="text" id="lastName" class="bokning-input">
+                                   <input type="text" id="lastName4" class="bokning-input lastName" required>
                                    <p class="invalidinput">Enter valid last name</p>
                                 </div>
                                
-                                <label for="email" class="">Email</label>
+                                <label for="email4" class="">Email</label>
                                 <div class="input-error">
-                                   <input type="email" id="email" class="bokning-input" required>
+                                   <input type="email" id="email4" class="bokning-input hotMail" required>
                                    <p class="invalidinput">Enter valid mail</p> 
                                 </div>
                                 
-                                <label>Totalt pris</label>
+                                <label for="totalPris4">Totalt pris</label>
                                 <input
                                 type="text"
+                                id="totalPris4"
                                 class="totalPris"
                                 value="2 000 kr"
                                 readonly
@@ -453,7 +460,8 @@
                            
                             </div>
                                 
-                                <button type="button" id="bekräftaBokning">Bekräfta bokning</button>
+                                <button type="button" class="bekraftaBokning">Bekräfta bokning</button>
+                                <button type="button" class="borjaom">Börja om</button>
 
                             </form>
 
@@ -468,7 +476,7 @@
 
 </main>
 
-
+<!-- Gökhan html slut -->
 <!-- Alex Footer -->
 
 <footer class="footer">
