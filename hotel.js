@@ -279,7 +279,7 @@ document.querySelectorAll(".bokning").forEach(form => {
         const dateFrom = form.querySelector(".datumFrom").value;
         const dateTo = form.querySelector(".datumTill").value;
 
-        //hittar bekräftelseavsnittet//
+        //hittar bekräftelse delen//
         const confirmation = form.querySelector(".bokningsbekraftelse");
  
 
@@ -357,11 +357,13 @@ document.querySelectorAll(".bokning").forEach(form => {
 
         if (selectedOffer) {
             updateTotal(form, selectedOffer);
-            
+            //hittar boknings klassen//
             const confirmation = form.querySelector(".bokningsbekraftelse");
+            //detta som gömmer klassen//
             confirmation.hidden = true;
+            //dett är vad som hittar den gröna knappen och gör den synlig igen//
             form.closest(".familjeinfo").querySelector(".button-text").hidden = false;
-
+            //gör formuläret och bokningsknappen synlig igen//
             form.querySelectorAll(
                 ".formgrupp, .formgrupp2, .bekraftaBokning"
             ).forEach(element => {
