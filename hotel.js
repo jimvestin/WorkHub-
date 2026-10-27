@@ -83,7 +83,7 @@ function validateUser(form) {
 
      //ser till att ens mail är korrekt//
      if(!/^[^\s@]+@[^\s@]+\.[^\s@]{2,}$/.test(email.value.trim())) {
-      console.log ("du måste ange din email");
+      
 
       const parent = email.parentElement;
       parent.classList.add("error")
@@ -97,7 +97,7 @@ function validateUser(form) {
       
      //ser till att datum är ifyllt//
      if(dateFrom.value.trim() === "") {
-      console.log ("ange datum från");
+      
 
       const parent = dateFrom.parentElement;
       parent.classList.add("error");
@@ -111,7 +111,7 @@ function validateUser(form) {
 
      //likaså här//
      if (dateTo.value.trim() === "") {
-     console.log("ange datum till");
+     
 
      const parent = dateTo.parentElement;
      parent.classList.add("error");
@@ -123,7 +123,7 @@ function validateUser(form) {
      dateFrom.value !== "" &&
      dateTo.value <= dateFrom.value
 )    {
-     console.log("Utcheckningsdatum måste vara efter incheckningsdatum");
+     
 
      const parent = dateTo.parentElement;
      parent.classList.add("error");
