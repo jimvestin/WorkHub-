@@ -4,7 +4,7 @@ Examination i JavaScript
 ## Ansvarsfördelning
 
 - **Jim:** Spa och Header/Navbar
-- **Gökhan:**
+- **Gökhan:** Hotel och Carousel
 - **Alex:** Konferens
 - **Markus:** Restaurant och Selections
 
