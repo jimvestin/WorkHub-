@@ -20,14 +20,28 @@ const offers = [
     }
     
 ];
-// Hämtar element från HTML
+
 const container = document.getElementById("offers-container");
 const quantity = document.getElementById("quantity");
 const priceDisplay = document.getElementById("price");
 const form = document.getElementById("booking-form");
 const confirmation = document.getElementById("confirmation");
 const resetBtn = document.getElementById("reset-btn");
-const date = document.getElementById("date"); 
+const date = document.getElementById("date");
+
+const nameInput = document.getElementById("name");
+const name = nameInput.value.trim();
+const nameError = document.getElementById("name-error");
+const emailInput = document.getElementById("email");
+const email = emailInput.value.trim();
+const emailError = document.getElementById("email-error");
+
+nameInput.addEventListener("input", () => {
+    validateAndShowError(nameInput, nameError, validateName);
+});
+emailInput.addEventListener("input", () => {
+    validateAndShowError(emailInput, emailError, validateEmail);
+});
 
 // Sparar det valda erbjudandet
 let selectedOffer = null;
@@ -62,6 +76,32 @@ offers.forEach(offer => {
 
     container.appendChild(card);
 });
+    // Kontrollerar namnet
+function validateName(name) {
+    if (!name) {
+        return "Fyll i namn";
+    }
+    if (name.length < 2){
+        return "Namnet måste innehålla minst 2 tecken";
+    }
+    if (!/^[A-Za-zÅÄÖåäö\s]+$/.test(name)) {
+        return "Endast bokstäver A-Ö är tillåtna";
+    }
+    return ""; 
+}
+    // Kontrollerar e-postadressen
+function validateEmail(email){
+    if (!email) {
+        return "Fyll i en email"
+    }
+    const emailPattern = /^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/;
+    if (!emailPattern.test(email)){
+        return "Ogiltig e-postadress";
+    }
+    return "";
+    }
+
+
 
 // Räknar ut och uppdaterar totalpriset
 function updatePrice() {
@@ -89,69 +129,64 @@ function updatePrice() {
 // Känner av när antalet ändras
 quantity.addEventListener("input", updatePrice);
 
+
+// En generell funktion som hanterar själva kontrollen och felmeddelandet
+function validateAndShowError(inputElement, errorElement, validationFn) {
+    
+    const value = inputElement.value.trim();    
+    
+    const errorMessage = validationFn(value);    
+    
+    errorElement.textContent = errorMessage;    
+    
+    return errorMessage === "";
+}
+
 // Validerar och skickar bokningsformuläret
 form.addEventListener("submit", (event) => {
-
     event.preventDefault();
 
     let valid = true;
 
-    document
-        .querySelectorAll('[id$="error"]')
-        .forEach(error => error.textContent = "");
+    // Kolla namnet
+    if (!validateAndShowError(nameInput, nameError, validateName)) {
+        valid = false;
+    }
 
-    const name = document.getElementById("name").value.trim();
-    const email = document.getElementById("email").value.trim();
-    const amount = Number(quantity.value);
+    // Kolla e-posten
+    if (!validateAndShowError(emailInput, emailError, validateEmail)) {
+        valid = false;
+    }
+
     const bookingDate = date.value;
-    const nameErrorMessage = validateName(name);
-    if (nameErrorMessage) {
-        document.getElementById("name-error").textContent = nameErrorMessage;
+    if (!bookingDate){
+        document.getElementById("date-error").textContent = "Välj ett bokingsdatum";
         valid = false;
-    }
-
-    // Kontrollerar namnet
-function validateName(name) {
-    if (!name) {
-        return "Fyll i namn";
-    }
-    if (name.lenght < 2){
-        return "Namnet måste innehålla minst 2 tecken";
-    }
-    if (!/^[A-Za-zÅÄÖåäö\s]+$/.test(name)) {
-        return "Endast bokstäver A-Ö är tillåtna";
-    }
-    return ""; // Inget fel
-}
-
-    // Kontrollerar e-postadressen
-    const emailPattern = /^[^\s@]+@[^\s@]+\.[^\s@]{2,}$/;
-    if (!emailPattern.test(email)) {
-        document.getElementById("email-error").textContent = "Ogiltig e-postadress";
-        valid = false;
-    }
-    if (!bookingDate) {
-        document.getElementById("date-error").textContent = "Välj ett bokningsdatum";
-        valid = false;
-    } else {
-        // Kontrollera att datumet är giltigt
+    } 
+    else {
         const selectedDate = new Date(bookingDate);
         const today = new Date();
         today.setHours(0, 0, 0, 0);
 
-        if (selectedDate < today) {
+        if (selectedDate < today){
             document.getElementById("date-error").textContent = "Välj ett giltligt datum";
             valid = false;
         }
+        else {
+            document.getElementById("date-error").textContent = "";
+        }
     }
 
-    // Kontrollerar att ett erbjudande har valts
+      // Kontrollerar att ett erbjudande har valts
     if (!selectedOffer) {
         priceDisplay.textContent = "Du måste välja ett erbjudande";
         priceDisplay.style.color = "red";
         valid = false;
     }
+     
+    const amount = Number(quantity.value);      
 
+  
     // Kontrollerar antalet personer
     if (
         !Number.isInteger(amount) ||
