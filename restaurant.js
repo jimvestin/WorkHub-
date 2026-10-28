@@ -104,15 +104,26 @@ form.addEventListener("submit", (event) => {
     const email = document.getElementById("email").value.trim();
     const amount = Number(quantity.value);
     const bookingDate = date.value;
+    const nameErrorMessage = validateName(name);
+    if (nameErrorMessage) {
+        document.getElementById("name-error").textContent = nameErrorMessage;
+        valid = false;
+    }
 
     // Kontrollerar namnet
+function validateName(name) {
     if (!name) {
-    document.getElementById("name-error").textContent = "Fyll i namn";
-    valid = false;
-    } else if (!/^[A-Za-zÅÄÖåäö\s]+$/.test(name)) {
-    document.getElementById("name-error").textContent = "Endast bokstäver A-Ö är tillåtna";
-    valid = false;
+        return "Fyll i namn";
+    }
+    if (name.lenght < 2){
+        return "Namnet måste innehålla minst 2 tecken";
+    }
+    if (!/^[A-Za-zÅÄÖåäö\s]+$/.test(name)) {
+        return "Endast bokstäver A-Ö är tillåtna";
+    }
+    return ""; // Inget fel
 }
+
     // Kontrollerar e-postadressen
     const emailPattern = /^[^\s@]+@[^\s@]+\.[^\s@]{2,}$/;
     if (!emailPattern.test(email)) {
