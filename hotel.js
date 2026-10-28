@@ -239,15 +239,16 @@ document.querySelectorAll(".bokning").forEach(form => {
         "#familjerum, #enkelrum, #executive, #presidentsvit"
         
     );
-    
+    //hittar korrekta priset baserat på id//
     const selectedOffer = offers.find(
         offer => offer.id === room.id
     );
-
+    
+    //registrerar byte av antal personer//
     antalPersoner.addEventListener("input", function () {
     
     
-
+    //kontrollerar så att rummet finns//
     if (selectedOffer) {
         updateTotal(form, selectedOffer);
     }
