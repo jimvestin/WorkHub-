@@ -34,6 +34,7 @@ const nameInput = document.getElementById("name");
 const nameError = document.getElementById("name-error");
 const emailInput = document.getElementById("email");
 const emailError = document.getElementById("email-error");
+const quantityError = document.getElementById("quantity-error");
 
 nameInput.addEventListener("input", () => {
     validateAndShowError(nameInput, nameError, validateName);
@@ -115,35 +116,54 @@ function validateDate (bookingDate){
          return "Välj ett giltigt datum";
         }
         return "";
-    }   
+    }
+function validateQuantity(quantityValue){
+       
+    // Kontrollerar antalet personer
+    if (!quantityValue){
+        return "Fyll i antal personer";
+    }
+    const amount = Number(quantityValue);  
+    if (!Number.isInteger(amount)){
+        return "Antal måste vara ett heltal";
+    } 
+    if (amount < 1 || amount > 5) {
+        return "Antal måste vara 1-5";
+    }
+
+    return "";
+}
 
 
 // Räknar ut och uppdaterar totalpriset
 function updatePrice() {
 
-    const amount = Number(quantity.value);
+    const errorMessage = validateQuantity(quantity.value);
 
     if (!selectedOffer) {
-        priceDisplay.textContent =
-        "Välj ett erbjudande";
+        priceDisplay.textContent = "Välj ett erbjudande";
         priceDisplay.style.color = "";
         return;
     }
 
     if (amount < 1 || amount > 5) {
-        priceDisplay.textContent =
-        "Antal måste vara 1-5";
+        priceDisplay.textContent = "Antal måste vara 1-5";
         priceDisplay.style.color = "";
         return;
     }
-    
+
+    const amount = Number(quantity.value);
+
     priceDisplay.style.color = "";
-    priceDisplay.textContent =
-    `Totalpris: ${selectedOffer.price * amount} kr`;
+    priceDisplay.textContent = `Totalpris: ${selectedOffer.price * amount} kr`;
 }
 // Känner av när antalet ändras
-quantity.addEventListener("input", updatePrice);
-
+["input", "change"].forEach(eventType => {
+    quantity.addEventListener(eventType, () => {
+        updatePrice();
+        validateAndShowError(quantity, quantityError, validateQuantity);
+    });
+});
 
 // Validerar och visar felmeddelande
 function validateAndShowError(inputElement, errorElement, validationFn) {
@@ -163,46 +183,36 @@ form.addEventListener("submit", (event) => {
 
     let valid = true;
 
-    // Kollar Namnet
+    // Kollar namnet
     if (!validateAndShowError(nameInput, nameError, validateName)) {
         valid = false;
     }
 
-    // Kollar Email
+    // Kollar e-postadressen
     if (!validateAndShowError(emailInput, emailError, validateEmail)) {
         valid = false;
     }
-    
-    // Kollar Datumet
-    if (!validateAndShowError (dateInput, dateError, validateDate)){
-        valid = false
+
+    // Kollar datumet
+    if (!validateAndShowError(dateInput, dateError, validateDate)) {
+        valid = false;
     }
 
-      // Kontrollerar att ett erbjudande har valts
+    // Kollar antal personer
+    if (!validateAndShowError(quantity, quantityError, validateQuantity)) {
+        valid = false;
+    }
+
+    // Kontrollerar att ett erbjudande har valts
     if (!selectedOffer) {
         priceDisplay.textContent = "Du måste välja ett erbjudande";
         priceDisplay.style.color = "red";
         valid = false;
     }
-     
-    const amount = Number(quantity.value);      
-
-  
-    // Kontrollerar antalet personer
-    if (
-        !Number.isInteger(amount) ||
-        amount < 1 ||
-        amount > 5
-    ) {
-
-        document.getElementById("quantity-error")
-        .textContent = "Antal måste vara 1-5";
-
-        valid = false;
-    }
 
     if (!valid) return;
 
+    const amount = Number(quantity.value);
     const name = nameInput.value.trim();
     const email = emailInput.value.trim();
     const bookingDate = dateInput.value;
