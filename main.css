@@ -196,7 +196,7 @@ h3 {
     display: inline-block;
     transform: translateY(200px);
     color: var(--white);
-    background-color: var(--accent);
+    background-color: #4F6354;
     padding: 8px 20px;
     border: none;
     border-radius: 0;

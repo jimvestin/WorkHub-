@@ -353,6 +353,16 @@ h3 {
     opacity: 0.5;
 }
 
+.bokningsbekraftelse {
+    grid-column: 1 / -1;
+    grid-row: 1 / -1;
+    align-self: start;
+}
+
+[hidden] {
+    display: none !important;
+}
+
 /* Gökhan css slut */
 /* Alex Footer */
 

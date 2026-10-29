@@ -24,13 +24,13 @@
      <header class="header">
 
     <a href="index.html" class="logo">
-        WorkHub Hotell
+        WorkHub Hotel
     </a>
 
     <nav class="navbar">
-        <a href="hotel.html">Hotell</a>
-        <a href="spa.html">Spa</a>
         <a href="index.html">Home</a>
+        <a href="hotel.html">Hotell</a>
+        <a href="spa.html">Spa</a>        
         <a href="conference.html">Konferens</a>
     </nav>
 
@@ -59,9 +59,8 @@
 </section>
 <section class="offers">    
 
-    
 
-    <div class="offers-form" id="offers-container">
+    <div class="offers-form">
         <h2>Boknings Formulär</h2>
     <form id="booking-form" novalidate>
 
@@ -71,12 +70,12 @@
         <label for="email">E-post:</label>
         <input type="text" id="email"> <p id="email-error"></p>
 
+
         <label for="quantity">Antal personer (1-5):</label>
         <input type="number" id="quantity" value="1"> <p id="quantity-error"></p>
 
         <label for="date">Bokningsdatum:</label>
-        <input type="date" id="date">
-        <p id="date-error"></p>
+        <input type="date" id="date"> <p id="date-error"></p>
 
         <div id="price">Välj ett erbjudande</div>
         <button type="submit">Bekräfta bokning</button>

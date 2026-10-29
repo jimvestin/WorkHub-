@@ -115,78 +115,160 @@ h3 {
 }
 .heropic, .herotext{
     flex: 1;
-
+    
 }
-.herotext{
-    flex: 1;
-    display:flex;
+.herotext{    
+    text-align: center;
+}
+#offers-container {
+    display: flex;
     flex-direction: column;
-    justify-content: center;
-    align-items: center;
+    gap: 1rem;
+    width: 60%;
+    margin: 0 auto;    
+}
+.offer-card {
+    background: var(--white);
+    border: 1px solid var(--sand);
+    padding: 1rem;
+    border-radius: 10px;
+    cursor: pointer;
+    position: relative;
+}
 
+.offer-card:hover {
+    border-color: var(--accent);
 }
 
 .offer-card .selected-text {
-  display: none; 
+    display: none;
 }
-.offer-card{
-    position: relative;
-    border:1px solid #000;
-    padding:1rem;
-    margin-bottom:1rem;
-    cursor:pointer;   
-    border-radius: 10px;    
+
+.offer-card.selected {
+    border: 2px solid var(--green);
 }
+
 .offer-card.selected .selected-text {
     display: block;
-    position: absolute;
-    bottom: 15px;
-    right: 15px;  
-    color: green;
-    padding: 4px 10px;
-    font-size: 1rem;
-    border-radius: 4px;
+    color: var(--green);
     font-weight: bold;
 }
-.offers{    
+.offers {
     display: flex;
     width: 100%;
-    }
-    #offers-container, .Picoffers{
-        flex: 1;        
-    } 
-    .offers-form{
-        display: flex;
-        flex-direction: column;
-        justify-content: center;
-        align-items: center;
-        padding: 2rem;
-        box-sizing: border-box;        
-    }
-    .Picoffers img {
-        width: 100%;
-        display: flex;
-        justify-content: center;
-        align-items: center;
-        object-fit: cover;
-    }
-.selected{
-    border:3px solid green;
+    min-height: calc(100vh - 100px);
+    background-color: var(--beige);
+    box-sizing: border-box;
 }
-#reset-btn{
+.offers-form {
+    flex: 1; 
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    padding: 3rem 2rem;
+    box-sizing: border-box;
+}
+.offers-form h2 {
+    color: var(--text);
+    margin-bottom: 1rem;
+    text-align: center;
+}
+#booking-form {
+    background-color: var(--white);
+    padding: 2rem;
+    border-radius: 16px;    
+    display: flex;
+    flex-direction: column;
+    box-sizing: border-box;
+    width: 100%;    
+}
+.Picoffers {
+    flex: 1; 
+    display: flex;
+}
+.Picoffers img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    display: block;
+}
+/* Styling för inmatningsfält och etiketter i formuläret */
+#booking-form input {
+    width: 100%;
+    padding: 15px 15px;
+    border: 1.5px solid var(--sand);
+    border-radius: 8px;
+    font-size: 1rem;
+    background-color: #faf8f5;
+    color: var(--text);
+    box-sizing: border-box;   
+}
+#booking-form label {
+    font-size: 0.9rem;
+    font-weight: 600;
+    color: var(--text);
+    margin-bottom: 0.3rem;
+    margin-top: 0.5rem;
+    display: block;
+}
+/* Felmeddelanden i formuläret */
+p[id$="error"] {
+    color: #b91c1c;
+    font-size: 0.82rem;
+    margin-top: 0.2rem;
+    margin-bottom: 0.4rem;
+    min-height: 16px;
+}
+
+#price {
+    font-weight: 700;
+    font-size: 20px;
+    color: var(--text);
+    text-align: center;
+    margin: 1rem 0;
+}
+/* Knappar för att skicka eller nollställa formuläret */
+#booking-form button[type="submit"] {
+    background-color: var(--green);
+    color: var(--white);
+    border: none;
+    padding: 12px;
+    border-radius: 8px;
+    font-size: 1rem;
+    font-weight: 600;
+    cursor: pointer;
+    transition: background-color 0.2s;
+}
+#booking-form button[type="submit"]:hover {
+    background-color: #3e4f42;
+}
+#reset-btn {
+    background-color: var(--sand);
+    color: var(--text);
+    border: none;
+    padding: 12px;
+    border-radius: 8px;
+    font-size: 1rem;
+    font-weight: 600;
+    cursor: pointer;
+    transition: background-color 0.2s;
+    width: 100%;
+    margin-top: 0.75rem;
+}
+#reset-btn:hover {
+    background-color: #c4b5a0;
+}
+
+/* Bekräftelsebox som visas efter skickad bokning annars gömd */
+#confirmation {
+    display: none;
+    font-size: 20px;
+    text-align: center;
+    background-color: var(--white);
+    padding: 1.5rem;
+    border-radius: 12px;
     margin-top: 1rem;    
-}
-
-#error,
-#confirmation,
-#price,
-#dateError{
-    margin-top:1rem;
-    
-}
-
-p[id$="error"]{
-    color:red;
 }
 .footer {
     background-color: var(--green);
@@ -198,7 +280,6 @@ p[id$="error"]{
 
     font-size: 14px;
 }
-
 
 /* Vänster sida footer */
 
