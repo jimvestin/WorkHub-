@@ -29,7 +29,6 @@ const confirmation = document.getElementById("confirmation");
 const resetBtn = document.getElementById("reset-btn");
 const dateInput = document.getElementById("date");
 const dateError = document.getElementById("date-error")
-
 const nameInput = document.getElementById("name");
 const nameError = document.getElementById("name-error");
 const emailInput = document.getElementById("email");
@@ -137,22 +136,21 @@ function validateQuantity(quantityValue){
 
 // Räknar ut och uppdaterar totalpriset
 function updatePrice() {
-
-    const errorMessage = validateQuantity(quantity.value);
-
     if (!selectedOffer) {
         priceDisplay.textContent = "Välj ett erbjudande";
         priceDisplay.style.color = "";
         return;
     }
 
-    if (amount < 1 || amount > 5) {
-        priceDisplay.textContent = "Antal måste vara 1-5";
+    // Hämta mängden först av allt
+    const amount = Number(quantity.value);
+
+    // Om antalet är ogiltigt, visa inte totalpris utan uppmana att välja rätt antal
+    if (validateQuantity(quantity.value) !== "") {
+        priceDisplay.textContent = "Ange giltigt antal (1-5)";
         priceDisplay.style.color = "";
         return;
     }
-
-    const amount = Number(quantity.value);
 
     priceDisplay.style.color = "";
     priceDisplay.textContent = `Totalpris: ${selectedOffer.price * amount} kr`;
@@ -167,13 +165,10 @@ function updatePrice() {
 
 // Validerar och visar felmeddelande
 function validateAndShowError(inputElement, errorElement, validationFn) {
-    
+    if (!inputElement || !errorElement) return true;
     const value = inputElement.value.trim();    
-    
     const errorMessage = validationFn(value);    
-    
     errorElement.textContent = errorMessage;    
-    
     return errorMessage === "";
 }
 
@@ -183,25 +178,10 @@ form.addEventListener("submit", (event) => {
 
     let valid = true;
 
-    // Kollar namnet
-    if (!validateAndShowError(nameInput, nameError, validateName)) {
-        valid = false;
-    }
-
-    // Kollar e-postadressen
-    if (!validateAndShowError(emailInput, emailError, validateEmail)) {
-        valid = false;
-    }
-
-    // Kollar datumet
-    if (!validateAndShowError(dateInput, dateError, validateDate)) {
-        valid = false;
-    }
-
-    // Kollar antal personer
-    if (!validateAndShowError(quantity, quantityError, validateQuantity)) {
-        valid = false;
-    }
+    if (!validateAndShowError(nameInput, nameError, validateName)) valid = false;
+    if (!validateAndShowError(emailInput, emailError, validateEmail)) valid = false;
+    if (!validateAndShowError(dateInput, dateError, validateDate)) valid = false;
+    if (!validateAndShowError(quantity, quantityError, validateQuantity)) valid = false; 
 
     // Kontrollerar att ett erbjudande har valts
     if (!selectedOffer) {
@@ -227,6 +207,7 @@ form.addEventListener("submit", (event) => {
         <p>Antal personer: ${amount}</p>
         <p>Totalpris: ${selectedOffer.price * amount} kr</p>
     `;
+    confirmation.style.display = "block";
 
     // Låser formuläret efter bekräftelse
     form.querySelectorAll("input, button")
@@ -249,6 +230,7 @@ resetBtn.addEventListener("click", () => {
     selectedOffer = null;
 
     confirmation.innerHTML = "";
+    confirmation.style.display = "none";
 
     priceDisplay.textContent =
     "Välj ett erbjudande";
