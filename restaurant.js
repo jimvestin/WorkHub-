@@ -27,13 +27,12 @@ const priceDisplay = document.getElementById("price");
 const form = document.getElementById("booking-form");
 const confirmation = document.getElementById("confirmation");
 const resetBtn = document.getElementById("reset-btn");
-const date = document.getElementById("date");
+const dateInput = document.getElementById("date");
+const dateError = document.getElementById("date-error")
 
 const nameInput = document.getElementById("name");
-const name = nameInput.value.trim();
 const nameError = document.getElementById("name-error");
 const emailInput = document.getElementById("email");
-const email = emailInput.value.trim();
 const emailError = document.getElementById("email-error");
 
 nameInput.addEventListener("input", () => {
@@ -41,6 +40,9 @@ nameInput.addEventListener("input", () => {
 });
 emailInput.addEventListener("input", () => {
     validateAndShowError(emailInput, emailError, validateEmail);
+});
+dateInput.addEventListener("input", () => {
+    validateAndShowError(dateInput, dateError, validateDate);
 });
 
 // Sparar det valda erbjudandet
@@ -101,6 +103,19 @@ function validateEmail(email){
     return "";
     }
 
+function validateDate (bookingDate){
+        if (!bookingDate)
+            return "Välj ett bokingsdatum";
+
+        const selectedDate = new Date(bookingDate);
+        const today = new Date();
+        today.setHours(0, 0, 0, 0);
+
+        if (selectedDate < today){
+         return "Välj ett giltigt datum";
+        }
+        return "";
+    }   
 
 
 // Räknar ut och uppdaterar totalpriset
@@ -130,7 +145,7 @@ function updatePrice() {
 quantity.addEventListener("input", updatePrice);
 
 
-// En generell funktion som hanterar själva kontrollen och felmeddelandet
+// Validerar och visar felmeddelande
 function validateAndShowError(inputElement, errorElement, validationFn) {
     
     const value = inputElement.value.trim();    
@@ -148,33 +163,19 @@ form.addEventListener("submit", (event) => {
 
     let valid = true;
 
-    // Kolla namnet
+    // Kollar Namnet
     if (!validateAndShowError(nameInput, nameError, validateName)) {
         valid = false;
     }
 
-    // Kolla e-posten
+    // Kollar Email
     if (!validateAndShowError(emailInput, emailError, validateEmail)) {
         valid = false;
     }
-
-    const bookingDate = date.value;
-    if (!bookingDate){
-        document.getElementById("date-error").textContent = "Välj ett bokingsdatum";
-        valid = false;
-    } 
-    else {
-        const selectedDate = new Date(bookingDate);
-        const today = new Date();
-        today.setHours(0, 0, 0, 0);
-
-        if (selectedDate < today){
-            document.getElementById("date-error").textContent = "Välj ett giltligt datum";
-            valid = false;
-        }
-        else {
-            document.getElementById("date-error").textContent = "";
-        }
+    
+    // Kollar Datumet
+    if (!validateAndShowError (dateInput, dateError, validateDate)){
+        valid = false
     }
 
       // Kontrollerar att ett erbjudande har valts
@@ -201,6 +202,10 @@ form.addEventListener("submit", (event) => {
     }
 
     if (!valid) return;
+
+    const name = nameInput.value.trim();
+    const email = emailInput.value.trim();
+    const bookingDate = dateInput.value;
 
     // Visar bokningsbekräftelsen
     confirmation.innerHTML = `
