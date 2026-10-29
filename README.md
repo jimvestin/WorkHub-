@@ -5,7 +5,7 @@ Examination i JavaScript
 
 - **Jim:** Spa och Header/Navbar
 - **Gökhan:** Hotel och Carousel
-- **Alex:** Konferens
+- **Alex:** Konferens & Footer
 - **Markus:** Restaurant och Selections
 
 ## Gemensam design
