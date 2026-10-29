@@ -104,16 +104,28 @@ h3 {
     font-weight: 500;
 }
 
-
+#offers h2 {
+    width: 80%;
+    margin: 15px auto;
+    text-align: center;
+}
+.offer-card h3,
+.offer-card p {
+    text-align: center;
+}
 .offer-card {
   width: 80%;
   padding: 1rem;
   border:1px solid #000;
-  margin:15px;
+  margin:15px auto;
   box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
   transition: box-shadow 0.2s, border-color 0.2s;
   cursor:pointer;
+  background-color: #faf8f5;
+  border-radius: 8px;
+  
 }
+
 
 .offer-card:hover {
   box-shadow: 0 3px 8px rgba(0, 0, 0, 0.15);
@@ -129,6 +141,8 @@ h3 {
     font-size: 1rem;
     font-weight: bold;
     color: #146c2e;
+    display: block;
+    text-align: center;
    }
 
 
@@ -171,13 +185,81 @@ h3 {
   margin-top: 1rem;
 }
 
+#bookingForm {
+    max-width: 80%;
+    margin: 20px auto;
+    padding: 24px;
+    background-color: var(--white);
+    border-radius: 8px;
+    box-sizing: border-box;
+}
+
+/* Rubriken i formuläret */
+#bookingForm h2 {
+    margin-top: 0;
+    text-align: center;
+}
+
+#bookingForm label {
+    display: block;
+}
 #bookingForm input,
 #bookingForm select {
-  width: 80%;
-  box-sizing: border-box;
-  padding: 1rem;
-  border:1px solid var(--green);
-  border-radius: 4px;
+    display: block;
+    width: 100%;
+    margin: 10px auto;
+    box-sizing: border-box;
+    padding: 1rem;
+    border: 1px solid var(--green);
+    border-radius: 4px;
+    background-color: #faf9f5;
+}
+
+button {
+    padding: 12px 20px;
+    font-size: 16px;
+    background-color: var(--green);
+    color: var(--white);
+    border: none;
+    border-radius: 6px;
+    cursor: pointer;
+    transition: background-color 0.4s;
+}
+
+button:hover {
+    background-color: var(--accent)
+}
+
+/* container för bokningsbekräftelsen */
+#confirmation {
+    width: 77%;
+    margin: 24px auto 0;
+    padding: 24px;
+    border: 1px solid #bfdbfe;
+    border-radius: 12px;
+    background-color: #eff6ff;
+}
+
+/* Rubriken i bekräftelsen */
+#confirmation h2 {
+    margin-top: 0;
+    margin-bottom: 18px;
+    font-size: 1.4rem;
+}
+
+/* Text och bokningsuppgifter */
+#confirmation p {
+    margin: 10px;
+    line-height: 1;
+}
+
+/* Lite extra utrymme före totalpriset */
+#confirmation p:last-child {
+    margin-top: 18px;
+    padding-top: 14px;
+    border-top: 1px solid #bfdbfe;
+    font-weight: bold;
+    font-size: 1.1rem;
 }
 
 .footer {
@@ -197,9 +279,6 @@ h3 {
     border-radius: 0; 
     box-shadow: none; 
 } 
-
-
-
 /* Vänster sida footer */
 
 .footer-info {
