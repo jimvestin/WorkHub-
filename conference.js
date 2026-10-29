@@ -20,6 +20,12 @@ const offers = [
   }
 ];
 
+let selectedOfferId = null; // id på valt offer
+let isConfirmed = false; // Ändras till true när bokningen bekräftas 
+
+// Lägger meddelande där totalpris sen visas
+const start_price_message = "Välj först ett erbjudande för att se totalpriset.";
+
 // !!!! HÄMTAR ELEMENT FRÅN HTML !!!!
 // getElementById hittar element via id så dom kan användas i JS
 // Hämtar elementet med id "offers" från HTML-dokumentet
@@ -53,11 +59,22 @@ const confirmationSection = document.getElementById("confirmation");
 //begränsar så dom enda datumen som går att välja är dagens och framåt. 
 dateInput.min = new Date().toISOString().slice(0, 10);
 
+// Loopar igenom varje erbjudande i "offers" arrayen och skapar HTML-kod för varje erbjudande
+for (const offer of offers) {
+  offersContainer.innerHTML+= `
+  <div class="offer-card" data-offer-id="${offer.id}">
+  <h2>${offer.name}</h2>
+  <p>${offer.description}</p>
+  <p>${offer.pricePerHour} kr/h</p>
+  </div>
+  `;
+}
 
-
-let selectedOfferId = null; // id på valt offer
-let isConfirmed = false; // Ändras till true när bokningen bekräftas 
-
+// Gör så alla felmeddelanden visas som röda
+function showError(errorElement, message) {
+  errorElement.textContent = "⚠ Fel: " + message;
+  errorElement.style.color = "red";
+}
 
 //   !!!! VALIDERING !!!! 
 // Kollar så något fyllts i inputfält
@@ -65,8 +82,7 @@ let isConfirmed = false; // Ändras till true när bokningen bekräftas
 // True om fält är ifyllt annars false
 function validateInput(input, errorElement, errorMessage) {
   if (input.value.trim() === "") { //trim () tar bort blanksteg
-    errorElement.textContent = errorMessage;
-    errorElement.style.color = "red";
+    showError(errorElement, errorMessage);
     return false;
   }
   errorElement.textContent ="";
@@ -82,13 +98,11 @@ function isValidEmail(email) {
 // Visar felmeddelande vid e-postfältet
 function validateEmail() {
   if (emailInput.value === "") {
-    emailError.textContent = "Fyll i din e-postadress.";
-    emailError.style.color = "red";
+    showError(emailError, "Fyll i din e-postadress.");
     return false;
   }
   if (!isValidEmail(emailInput.value)) {
-    emailError.textContent = "Ange en giltig e-postadress.";
-    emailError.style.color = "red";
+    showError(emailError, "Ange en giltig e-postadress som till@exempel.se.");
     return false;
   }
   emailError.textContent = "";
@@ -102,8 +116,7 @@ const value = Number (quantityInput.value);
   quantityInput.value.trim() === "" ||
   !Number.isInteger(value) || value < 1 || value > 5
  ) {
-  quantityError.textContent = "Ange minst 1 eller max 5 timmar.";
-    quantityError.style.color = "red";
+  showError(quantityError, "Ange minst 1 eller max 5 timmar.");
     return false;
   }
   quantityError.textContent = "";
@@ -112,23 +125,59 @@ const value = Number (quantityInput.value);
 // Kollar att ett erbjudande är valt (SelectedOfferId = null tills man klickar på ett offer)
 function validateOffer() {
   if (selectedOfferId === null) {
-    offerError.textContent = "Välj ett erbjudande.";
-    offerError.style.color = "red";
+    showError(offerError, "Välj ett erbjudande.");
     return false;
   }
   offerError.textContent = "";
   return true;
 }
 
+// Kollar så inputfält med text är minst 2 tecken och bara innehåller bokstäver och vissa specialteckan
+// Används vid både företagsnamn och kontaktperson validering
+function validateLetters (input, errorElement, fieldName) {
+  const value = input.value.trim();
+  if (value === "") {
+  showError(errorElement,`Fyll i ${fieldName}.`);
+return false;
+  }
+  if (value.length < 2){
+  showError(errorElement, `${fieldName} måste vara minst 2 tecken.`);
+  
+  return false;
+  }
+  if (!/^[\p{L}\s'-]+$/u.test(value)){ 
+  showError(errorElement, `${fieldName} får bara innehålla bokstäver.`);
+   return false;
+}
+  errorElement.textContent ="";
+  return true;
+}
+
+function validateNumbers(){
+ const value = phoneInput.value.trim();
+ if (value === "") {
+  showError(phoneError, "Fyll i telefonnummer (endast siffror).");
+ 
+  return false;
+ }
+ if (!/^\d+$/.test(value)) {
+  showError(phoneError, "Telefonnumret får bara innehålla siffror.");
+ 
+  return false;
+ }
+ phoneError.textContent= "";
+ return true;
+}
 
 // Kontrollerar bokning
 // Returerar true bara om alla fält är giltiga
+// Varje kontroll visar sitt eget felmeddelande
 function validateBooking (){
 const offerValid = validateOffer();
-const companyValid = validateInput(companyInput, companyError, "Fyll i företagets namn");
-const contactValid = validateInput(contactPersonInput, contactPersonError, "Fyll i kontaktperson");
+const companyValid = validateLetters(companyInput, companyError, "företagsnamnet");
+const contactValid = validateLetters(contactPersonInput, contactPersonError, "kontaktpersonen");
 const emailValid = validateEmail();
-const phoneValid = validateInput(phoneInput, phoneError, "Fyll i telefonnummer");
+const phoneValid = validateNumbers();
 const dateValid = validateInput(dateInput, dateError, "Välj datum");
 const quantityValid = validateQuantity();
 
@@ -136,52 +185,16 @@ const quantityValid = validateQuantity();
 return offerValid && companyValid && contactValid && emailValid && phoneValid && dateValid && quantityValid;
 }
 
-
-// Loopar igenom varje erbjudande i "offers" arrayen och skapar HTML-kod för varje erbjudande
-for (const offer of offers) {
-  offersContainer.innerHTML+= `
-  <div class="offer-card" data-offer-id="${offer.id}">
-  <h2>${offer.name}</h2>
-  <p>${offer.description}</p>
-  <p>${offer.pricePerHour} kr/h</p>
-  </div>
-  `;
-}
-
-//EventListener som känner av om något har klickats på offers
-offersContainer.addEventListener("click", function (event) {
-  const card= event.target.closest(".offer-card");
-   if (!card) return;
-  selectOffer(card.dataset.offerId);
-});
-
-
-// Funktion som körs när användaren klickar på ett kort
-function selectOffer(offerId) {
-  if (isConfirmed) return;  
-  selectedOfferId = offerId;
-  offerError.textContent = "";
-    document.getElementById("bookingForm").style.display = "block";
-    calculateTotal();
-
-const offerCards = document.querySelectorAll(".offer-card"); // alla kort
-
-// Markerar det valda kortet och ger class "Selected" 
-  for (const card of offerCards) {
-    if (card.dataset.offerId === selectedOfferId) {
-      card.classList.add("selected");
-    } else {
-      card.classList.remove("selected");
-    }
-  }
- console.log(`Du har valt ${selectedOfferId}`);
-}
-
 // !!! TOTALPRIS !!! 
 // Räknar ut totalpriset PricePerHour * antal timmar
+// Returnerar null om inget erbjudande är valt eller om antalet är ogiltigt
 function calculateTotal() {
+  if(selectedOfferId === null){
+    totalPriceElement.textContent = start_price_message
+    return null;
+}
   if(!validateQuantity()) {
-    totalPriceElement.textContent ="";
+    totalPriceElement.textContent ="Priset visas när antalet är korrekt angivet";
     return null;
   }
  for (const offer of offers) {
@@ -195,9 +208,29 @@ function calculateTotal() {
  }
 }
 
+// Funktion som körs när användaren klickar på ett kort
+function selectOffer(offerId) {
+  if (isConfirmed) return;  
+  selectedOfferId = offerId;
+  offerError.textContent = "";
+    calculateTotal();
+
+const offerCards = document.querySelectorAll(".offer-card"); // alla kort
+
+// Markerar det valda kortet och ger class "Selected" 
+  for (const card of offerCards) {
+    if (card.dataset.offerId === selectedOfferId) {
+      card.classList.add("selected");
+    } else {
+      card.classList.remove("selected");
+    }
+  }
+}
+
 // Sköter låsning av formulär
 const form = document.getElementById("bookingForm");
 const resetBtn = document.getElementById("resetBooking");
+
 
 // Låser eller låser upp alla fält och knappar i formuläret, utom "Börja om"
 function setFormLocked(locked) {
@@ -207,6 +240,55 @@ function setFormLocked(locked) {
     }
   });
 }
+
+//Knapp som återställer det som fyllts i bokning
+function resetBooking () {
+  setFormLocked(false); //Låser upp fält
+document.getElementById("bookingForm").reset(); // Tömmer fält 
+quantityInput.value = 1; 
+confirmationSection.innerHTML = ""; // Tar bort bekräftelsen
+confirmationSection.hidden = true;
+
+selectedOfferId = null; // Gör så inget erbjudande är valt
+isConfirmed = false;
+
+// Tar bort markering på offer
+document.querySelectorAll(".offer-card").forEach(card => {
+  card.classList.remove("selected");
+});
+
+// Tömmer felmeddelanden
+[offerError, companyError, contactPersonError, emailError, phoneError, dateError, quantityError] .forEach(error => error.textContent ="");
+
+ // Återställer priset
+  totalPriceElement.textContent = start_price_message;
+
+}
+
+ // !!! EVENT LISTENERS !!!
+ // Kopplar börja om knapp till funktionen
+document.getElementById("resetBooking")
+ .addEventListener ("click",resetBooking);
+
+// EventListener som känner av om något har klickats på offers
+offersContainer.addEventListener("click", function (event) {
+  const card= event.target.closest(".offer-card");
+   if (!card) return;
+  selectOffer(card.dataset.offerId);
+});
+
+// Validerar om fälten medan användaren rättar fel
+ companyInput.addEventListener("input", () => { if (companyError.textContent) validateLetters(companyInput, companyError, "Företagsnamnet"); });
+ contactPersonInput.addEventListener("input", () => { if (contactPersonError.textContent) validateLetters(contactPersonInput, contactPersonError, "Kontaktpersonen"); });
+ emailInput.addEventListener("input", () => { if (emailError.textContent) validateEmail(); });
+ phoneInput.addEventListener("input", () => { if (phoneError.textContent) validateNumbers(); });
+ dateInput.addEventListener("input", () => { if (dateError.textContent) validateInput(dateInput, dateError, "Välj datum"); });
+
+// Räknar om priset varje gång användaren ändrar inputQuantity
+quantityInput.addEventListener("input", function () {
+  validateQuantity();
+  calculateTotal();
+});
 
 // Knapp som bekräftar bokningen
 const submitBookingButton =
@@ -235,43 +317,13 @@ confirmationSection.innerHTML = `
   <p>E-post: ${emailInput.value}</p>
   <p>Telefon: ${phoneInput.value}</p>
   <p>Datum: ${dateInput.value}</p>
-  <p>Antal timmar: ${hours}</p>
-  <p>Totalkostnad: ${totalPrice} kr</p>
+  <p>Antal timmar: ${hours} ${ // Väljer "timme" om 1 är valt, annars "timmar"
+    hours === 1 ? "timme" : "timmar"}</p> 
+  <p>Totalkostnad: ${totalPrice}kr</p>
 `;
 confirmationSection.hidden = false; // Tar bort hidden så bekräftelsen syns
 setFormLocked(true); // Låser formulärets input fält
 isConfirmed = true;
 });
 
-
-//Knapp som återställer det som fyllts i bokning
-function resetBooking () {
-  setFormLocked(false); //Låser upp fält
-document.getElementById("bookingForm").reset(); // Tömmer fält  
-confirmationSection.innerHTML = ""; // Tar bort bekräftelsen
-confirmationSection.hidden = true;
-
-selectedOfferId = null; // Gör så inget erbjudande är valt
-isConfirmed = false;
-
-// Tar bort markering på offer
-document.querySelectorAll(".offer-card").forEach(card => {
-  card.classList.remove("selected");
-});
-
-// Tömmer felmeddelanden
-[offerError, companyError, contactPersonError, emailError, phoneError, dateError, quantityError] .forEach(error => error.textContent ="");
-
- // Återställer priset
-  totalPriceElement.textContent ="";
-
-}
- // Kopplar börja om knapp till funktionen
-document.getElementById("resetBooking")
- .addEventListener ("click",resetBooking);
-
-
-// Räknar om priset varje gång användaren ändrar inputQuantity
-quantityInput.addEventListener("input", function () {
-  calculateTotal();
-});
+totalPriceElement.textContent = start_price_message;
