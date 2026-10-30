@@ -329,15 +329,12 @@ h3 {
     
 }
 
-.error {
-    .bokning-input {
-        border: 1px solid;
-        border-color: red;
-    }
+.input-error.error input {
+    border: 1px solid red;
+}
 
-    .invalidinput {
-        display: block;
-    }
+.input-error.error .invalidinput {
+    display: block;
 }
 
 
@@ -361,6 +358,20 @@ h3 {
 
 [hidden] {
     display: none !important;
+}
+
+.bokning.selected {
+    border: 2px solid var(--green);
+    border-radius: 8px;
+    padding: 20px;
+}
+
+.valt-erbjudande {
+    display: block;
+    color: var(--green);
+    font-weight: bold;
+    margin-top: 10px;
+    align-self: center;
 }
 
 /* Gökhan css slut */

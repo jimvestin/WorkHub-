@@ -110,8 +110,10 @@
                             <!-- hit JS funktionen hittar till -->
                             <button type="button" class="button-text" onclick="visaForm(this)">Boka familjerum <i class="fa-solid fa-arrow-right"></i></button>
                             <!-- boknings formulär som är hidden -->
-                            <form class="bokning" hidden>
+                            <span class="valt-erbjudande" hidden>Valt erbjudande</span>
 
+                            <form class="bokning" hidden>
+                            
                             <div class="formgrupp bokningsgrupp">
 
                                 <label for="bokningfran1">Bookning date from</label>
@@ -170,15 +172,16 @@
                                    <p class="invalidinput">Enter valid mail</p> 
                                 </div>
                                 
+                                <div class="input-error">
                                 <label for="totalPris1">Totalt pris</label>
                                 <input
                                 type="text"
                                 id="totalPris1"
                                 class="totalPris"
-                                value="1 000 kr"
                                 readonly
                                 >
-                           
+                                <p class="invalidinput">Kan ej räkna ut kostnad</p>
+                                </div>
                             </div>
                                 
                                 <button type="button" class="bekraftaBokning">Bekräfta bokning</button>
@@ -186,6 +189,7 @@
                                 <div class="bokningsbekraftelse" hidden>
                                     <h2>Bokning bekräftad</h2>
                                      <div class="bekraftelseInfo">
+                                       <p><strong>Rum</strong>  <span class="bekraftelseRum"></span></p>
                                        <p><strong>Namn:</strong> <span class="bekraftelseNamn"></span></p>
                                        <p><strong>Telefon:</strong> <span class="bekraftelseTelefon"></span></p>
                                        <p><strong>E-post:</strong> <span class="bekraftelseEmail"></span></p>
@@ -213,7 +217,10 @@
                             <p class="familjetext">Om du vill vara själv med tänkadet och uppnå nirvana, då är du på rätt plats. Så kom hit och börja tänka helt enkelt.</p>
                             <!-- hit JS funktionen hittar till -->
                             <button type="button" class="button-text" onclick="visaForm(this)">Boka enkelrum <i class="fa-solid fa-arrow-right"></i></button>
-                             <!-- boknings formulär som är hidden -->   
+                             <!-- boknings formulär som är hidden -->  
+                              
+                            <span class="valt-erbjudande" hidden>Valt erbjudande</span>
+
                             <form class="bokning" hidden>
 
                             <div class="formgrupp bokningsgrupp">
@@ -274,15 +281,16 @@
                                    <p class="invalidinput">Enter valid mail</p> 
                                 </div>
                                 
+                                <div class="input-error">
                                 <label for="totalPris2">Totalt pris</label>
                                 <input
                                 type="text"
                                 id="totalPris2"
                                 class="totalPris"
-                                value="500 kr"
                                 readonly
                                 >
-                           
+                                <p class="invalidinput">Kan ej räkna ut kostnad</p>
+                                </div>
                             </div>
                                 
                                 <button type="button" class="bekraftaBokning">Bekräfta bokning</button>
@@ -290,6 +298,7 @@
                                 <div class="bokningsbekraftelse" hidden>
                                     <h2>Bokning bekräftad</h2>
                                      <div class="bekraftelseInfo">
+                                       <p><strong>Rum</strong>  <span class="bekraftelseRum"></span></p>
                                        <p><strong>Namn:</strong> <span class="bekraftelseNamn"></span></p>
                                        <p><strong>Telefon:</strong> <span class="bekraftelseTelefon"></span></p>
                                        <p><strong>E-post:</strong> <span class="bekraftelseEmail"></span></p>
@@ -318,6 +327,8 @@
                             <!-- hit JS funktionen hittar till -->
                             <button type="button" class="button-text" onclick="visaForm(this)">Boka executive-rum <i class="fa-solid fa-arrow-right"></i></button>
                              <!-- boknings formulär som är hidden -->  
+                            <span class="valt-erbjudande" hidden>Valt erbjudande</span>
+                            
                             <form class="bokning" hidden>
 
                             <div class="formgrupp bokningsgrupp">
@@ -378,15 +389,16 @@
                                    <p class="invalidinput">Enter valid mail</p> 
                                 </div>
                                 
+                                <div class="input-error">
                                 <label for="totalPris3">Totalt pris</label>
                                 <input
                                 type="text"
                                 id="totalPris3"
                                 class="totalPris"
-                                value="800 kr"
                                 readonly
                                 >
-                           
+                                <p class="invalidinput">Kan ej räkna ut kostnad</p>
+                                </div>
                             </div>
                                 
                                 <button type="button" class="bekraftaBokning">Bekräfta bokning</button>
@@ -394,6 +406,7 @@
                                 <div class="bokningsbekraftelse" hidden>
                                     <h2>Bokning bekräftad</h2>
                                      <div class="bekraftelseInfo">
+                                       <p><strong>Rum</strong>  <span class="bekraftelseRum"></span></p>
                                        <p><strong>Namn:</strong> <span class="bekraftelseNamn"></span></p>
                                        <p><strong>Telefon:</strong> <span class="bekraftelseTelefon"></span></p>
                                        <p><strong>E-post:</strong> <span class="bekraftelseEmail"></span></p>
@@ -422,6 +435,9 @@
                             <!-- hit JS funktionen hittar till -->
                             <button type="button" class="button-text" onclick="visaForm(this)">Boka presidentsvit <i class="fa-solid fa-arrow-right"></i></button>
                             <!-- boknings formulär som är hidden -->
+
+                            <span class="valt-erbjudande" hidden>Valt erbjudande</span>
+                            
                             <form class="bokning" hidden>
 
                             <div class="formgrupp bokningsgrupp">
@@ -483,14 +499,16 @@
                                 </div>
                                 
                                 <label for="totalPris4">Totalt pris</label>
+                                
+                                <div class="input-error">
                                 <input
                                 type="text"
                                 id="totalPris4"
                                 class="totalPris"
-                                value="2 000 kr"
                                 readonly
                                 >
-                           
+                                <p class="invalidinput">Kan ej räkna ut kostnad</p>
+                                </div>
                             </div>
                                 
                                 <button type="button" class="bekraftaBokning">Bekräfta bokning</button>
@@ -498,6 +516,7 @@
                                 <div class="bokningsbekraftelse" hidden>
                                     <h2>Bokning bekräftad</h2>
                                      <div class="bekraftelseInfo">
+                                       <p><strong>Rum</strong>  <span class="bekraftelseRum"></span></p>
                                        <p><strong>Namn:</strong> <span class="bekraftelseNamn"></span></p>
                                        <p><strong>Telefon:</strong> <span class="bekraftelseTelefon"></span></p>
                                        <p><strong>E-post:</strong> <span class="bekraftelseEmail"></span></p>
