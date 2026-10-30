@@ -85,6 +85,18 @@ function visaForm(button) {
     }
 }
 
+//markerar rummet igen när användaren klickar inuti formuläret//
+document.querySelectorAll(".bokning").forEach(form => {
+
+    form.addEventListener("focusin", function () {
+
+        form.classList.add("selected");
+
+        form.closest(".familjeinfo")
+            .querySelector(".valt-erbjudande").hidden = false;
+    });
+});
+
 
 //VALIDERING AV BOKNING//
 
@@ -440,6 +452,9 @@ document.querySelectorAll(".bokning").forEach(form => {
     //registrerar klick funktion på knappen//
     borjaOmKnapp.addEventListener("click", function () {
         form.reset();
+
+        form.classList.remove("selected");
+        form.closest(".familjeinfo").querySelector(".valt-erbjudande").hidden = true;
         //låser upp formuläret när man klickar på Börja om knappen//
         setFormLocked(false);
         //hittar alla klasser med input-error//
