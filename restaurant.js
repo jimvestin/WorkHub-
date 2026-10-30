@@ -208,6 +208,7 @@ form.addEventListener("submit", (event) => {
         <p>Totalpris: ${selectedOffer.price * amount} kr</p>
     `;
     confirmation.style.display = "block";
+    container.style.display = "none";
 
     // Låser formuläret efter bekräftelse
     form.querySelectorAll("input, button")
@@ -231,7 +232,7 @@ resetBtn.addEventListener("click", () => {
 
     confirmation.innerHTML = "";
     confirmation.style.display = "none";
-
+    container.style.display = "flex";
     priceDisplay.textContent =
     "Välj ett erbjudande";
     priceDisplay.style.color = "";
